@@ -13,7 +13,6 @@ import FAQ from './FAQ';
 import { doubleUnderline, exclamation, funUnderline, twoLines } from './SVGs';
 
 const Home = () => {
-
     return (
         <div className='main'>
             <div className="section-1">
