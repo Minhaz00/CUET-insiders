@@ -19,7 +19,7 @@ const EventDetails = () => {
     };
 
     return (
-        <div className='p-5 event-details'>
+        <div className='p-5 event-details  shadow rounded-3 mt-3 w-75'>
             
             <Image src={event.banner} fluid rounded />
             

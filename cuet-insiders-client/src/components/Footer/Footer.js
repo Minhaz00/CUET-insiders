@@ -19,22 +19,22 @@ const Footer = () => {
                         </Link>
                     </Col>
                     <Col xs={12} md={2}>
-                        <Link to={'/'}>
+                        <Link to={'/feed'}>
                             <button className='btn btn-outline-dark'>Feed</button>
                         </Link>
                     </Col>
                     <Col xs={12} md={2}>
-                        <Link to={'/'}>
+                        <Link to={'/events'}>
                             <button className='btn btn-outline-dark'>Events</button>
                         </Link>
                     </Col>
                     <Col xs={12} md={2}>
-                        <Link to={'/'}>
+                        <Link to={'/news'}>
                             <button className='btn btn-outline-dark'>News</button>
                         </Link>
                     </Col>
                     <Col xs={12} md={2}>
-                        <Link to={'/'}>
+                        <Link to={'/search'}>
                             <button className='btn btn-outline-dark'>Find Mentor</button>
                         </Link>
                     </Col>
