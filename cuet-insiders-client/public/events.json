@@ -1,0 +1,74 @@
+[
+  {
+    "eventId": "1",
+    "name": "Future of Blockchain Economy",
+    "date": "30-05-23",
+    "platform": "Zoom",
+    "banner": "https://iili.io/H6NH3wN.png",
+    "department": "CSE"
+  },
+  {
+    "eventId": "2",
+    "name": "MERN Hackathon '23",
+    "date": "30-05-23",
+    "platform": "Google Meet",
+    "banner": "https://iili.io/H6NHfnt.png",
+    "department": "CSE"
+  },
+  {
+    "eventId": "3",
+    "name": "UX Conf '23",
+    "date": "10-05-23",
+    "platform": "Zoom",
+    "banner": "https://iili.io/H6NHqMX.png",
+    "department": "EEE"
+  },
+  {
+    "eventId": "4",
+    "name": "Machine Learning for Beginners",
+    "date": "12-05-23",
+    "platform": "Zoom",
+    "banner": "https://iili.io/H6NH2up.png",
+    "department": "CSE"
+  },
+  {
+    "eventId": "5",
+    "name": "Deep learning",
+    "date": "28-07-23",
+    "platform": "Google Meet",
+    "banner": "https://iili.io/H6NHYPe.png",
+    "department": "EEE"
+  },
+  {
+    "eventId": "6",
+    "name": "Future of Electrical Vehicle",
+    "date": "02-05-23",
+    "platform": "Zoom",
+    "banner": "https://iili.io/H6NHTAl.png",
+    "department": "CSE"
+  },
+  {
+    "eventId": "7",
+    "name": "Power System Modeling",
+    "date": "23-05-23",
+    "platform": "Google Meet",
+    "banner": "https://iili.io/H6NHuN2.png",
+    "department": "EEE"
+  },
+  {
+    "eventId": "8",
+    "name": "Introduction to WEB 3.0",
+    "date": "30-07-23",
+    "platform": "Google Meet",
+    "banner": "https://iili.io/H6NHAtS.png",
+    "department": "CE"
+  },
+  {
+    "eventId": "9",
+    "name": "Trends on Mechanical Engineering",
+    "date": "30-08-23",
+    "platform": "Zoom",
+    "banner": "https://iili.io/H6NH5o7.png",
+    "department": "Mechanical Engineering"
+  }
+]

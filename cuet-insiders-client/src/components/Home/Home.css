@@ -1,0 +1,40 @@
+.main{
+    margin: 0px auto;
+    text-align: center;
+    /* background-image: url(../../assets/images/Home/Presentation1.png); */
+
+}
+.section-1{
+    margin: 0 auto;
+    backdrop-filter: blur(100px);
+}
+
+.banner p{
+    width: 60%;
+    text-align: center;
+    margin: 0 auto;
+
+}
+
+.right{
+    width: 45%;
+    text-align: left;
+    /* text-align: justify; */
+}
+.right img{
+    text-align: left;
+    width: 95%;
+}
+.left{
+    text-align: left;
+    width: 45%;
+}
+.left img{
+    width: 95%;
+}
+.logoname{
+    width: 40% !important;
+    margin-top: 0 !important;
+}
+
+

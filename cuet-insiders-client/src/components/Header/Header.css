@@ -1,0 +1,20 @@
+.navbar{
+}
+
+.logo{
+    height: 40px;
+}
+
+.navs> a:hover {
+
+    text-align: center;
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(0.25turn, rgb(255, 95, 188), rgb(168, 26, 168));
+    border-image-slice: 1;
+
+}
+.navs> a{
+    text-decoration: none;
+    margin-left: 2em;
+    color: #332e36;
+}

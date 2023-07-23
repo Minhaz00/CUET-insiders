@@ -1,0 +1,11 @@
+.login{
+    width: 100%;
+    backdrop-filter: blur(90px);
+    padding: 30px 400px 180px;
+    /* border-radius: 30px; */
+}
+
+.login a{
+    text-decoration: none;
+    color: rgb(123, 123, 250);
+}
