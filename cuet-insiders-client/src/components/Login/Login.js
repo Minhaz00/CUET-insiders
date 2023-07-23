@@ -78,7 +78,7 @@ const Login = () => {
                     New Here? <Link to={'/register'}>Please register</Link>
                 </Form.Text>
                 <br /><br />
-                <p className=''>----------------------- or -----------------------</p>
+                <p className=''>-------------------------- or --------------------------</p>
                 <div className="d-lg-flex justify-content-center align-items-center">
                     <Button onClick={handleGoogleSignIn} className='mt-2 w-100' variant="outline-dark"><FaGoogle></FaGoogle>{' '}Login with Google</Button>
                 </div>
