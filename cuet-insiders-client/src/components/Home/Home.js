@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logoname from '../../assets/images/logo/Full name logo.png'
 import img2 from '../../assets/images/Home/undraw_Solution_mindset_re_57bf-removebg-preview.png'
 import img3 from '../../assets/images/Home/undraw_Questions_re_1fy7-removebg-preview.png'
@@ -30,7 +31,9 @@ const Home = () => {
                     <p>A platform for proper advice, guidance and support for your future career. Leverage the true potential and grow a network with professionals.</p>
                     {funUnderline} <br /><br />
 
-                    <button className='btn btn-outline-dark'>Start exploring <FaArrowRight></FaArrowRight> </button>
+                    <Link to="/feed">
+                        <button className='btn btn-outline-dark'>Start exploring <FaArrowRight></FaArrowRight> </button>        
+                    </Link>
                 </div> 
             </div>
                 

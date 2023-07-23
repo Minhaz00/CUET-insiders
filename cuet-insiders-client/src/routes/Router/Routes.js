@@ -10,6 +10,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import News from "../../components/News/News";
 import NewsDetails from "../../components/News/NewsDetails";
 import CategoryNews from "../../components/News/CategoryNews";
+import Feed from "../../components/Feed/Feed";
 
 
 export const router = createBrowserRouter([
@@ -20,6 +21,11 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home> ,
+                
+            },
+            {
+                path: '/feed',
+                element: <PrivateRoute><Feed></Feed></PrivateRoute> ,
                 
             },
             {
@@ -52,16 +58,6 @@ export const router = createBrowserRouter([
                 loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`)
                 
             },
-            // {
-            //     path: '/category/:id',
-            //     element: <Category></Category>,
-            //     loader: ({params}) => fetch(`https://newspires-server.vercel.app/category/${params.id}`)
-            // },
-            // {
-            //     path: '/news/:id',
-            //     element: <PrivateRoute><News></News></PrivateRoute>,
-            //     loader: ({params}) => fetch(`https://newspires-server.vercel.app/news/${params.id}`)
-            // },
             {
                 path: '/TandC',
                 element: <TandC></TandC>
