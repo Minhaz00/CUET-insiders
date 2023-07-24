@@ -9,7 +9,7 @@ import { FaSearch, FaSignOutAlt } from "react-icons/fa";
 import './Header.css';
 import { AuthContext } from '../../context/AuthProvider';
 import { Image } from 'react-bootstrap';
-import { FaUser } from 'react-icons/fa6';
+import { FaUserCircle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
 const Header = () => {
@@ -58,7 +58,7 @@ const Header = () => {
                                     {user.photoURL ?
                                         <Image className='ms-2 me-2' style={{ width: "45px" }} roundedCircle src={user.photoURL}></Image>
                                         :
-                                        <FaUser></FaUser>
+                                        <FaUserCircle className='ms-2 me-2' style={{ fontSize: "35px" }}></FaUserCircle>
                                     }
                                     <button onClick={handleSignOut} className='btn btn-outline-dark'>
                                         <FaSignOutAlt></FaSignOutAlt>{" Logout"}
@@ -67,13 +67,12 @@ const Header = () => {
                                 </>
                                 :
                                 <>
-                                    
-                                <Link to={`/login`}>
-                                    <button className='ms-2 btn btn-outline-dark'>Login</button>
-                                </Link>
-                                <Link to={`/register`}>
-                                    <button className='ms-2 btn btn-outline-dark'>Signup</button>
-                                </Link>
+                                    <Link to={`/login`}>
+                                        <button className='ms-2 btn btn-outline-dark'>Login</button>
+                                    </Link>
+                                    <Link to={`/register`}>
+                                        <button className='ms-2 btn btn-outline-dark'>Signup</button>
+                                    </Link>
                                 </>
                             }
 

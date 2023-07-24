@@ -66,12 +66,12 @@ const SignUp = () => {
     }
 
     return (
-        <div className='login m-auto'>
+        <div className='login m-auto shadow rounded-4 mt-3 mb-5'>
             <div className='w-50 mt-3 m-auto text-center'>
                 <Link to={'/'}>
-                    <img className='w-75 mb-2' src={logo} alt="" srcset="" />
+                    <img className='w-100 mb-2' src={logo} alt="" srcset="" />
                 </Link>
-                <h4>Register</h4>
+                <h5>Register</h5>
             </div>
             <Form onSubmit ={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">

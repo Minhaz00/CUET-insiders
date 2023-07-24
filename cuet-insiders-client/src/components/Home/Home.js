@@ -21,7 +21,7 @@ const Home = () => {
                 <div className='banner pt-5 pb-5 mt-5'>
                     
                     <div className='mb-3'>
-                        {twoLines} &nbsp;&nbsp;
+                    {twoLines} &nbsp;&nbsp;
                         <img className='logoname' src={logoname} alt="" />
                     </div>
 
