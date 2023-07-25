@@ -30,7 +30,7 @@ const Login = () => {
                 console.log(user);
                 form.reset();
                 setError("");
-                navigate(from, {replace: true});
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error(error);

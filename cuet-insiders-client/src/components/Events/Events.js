@@ -29,7 +29,7 @@ const Events = () => {
 
     return (
         <div className="container">
-            <h1 className="text-center pt-3">Upcomming Events {exclamation}</h1>
+            {/* <h2 className="text-center pt-3">Upcomming Events {exclamation}</h2> */}
             <div>
                 <form className="d-flex mt-4 mb-4 controls">
                     <select className="text-center me-2 rounded" onChange={handleChange}>

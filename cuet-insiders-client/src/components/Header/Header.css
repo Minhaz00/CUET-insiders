@@ -1,11 +1,13 @@
 .navbar{
+    width: 90%;
+    margin: 0 auto;
 }
 
 .logo{
     height: 40px;
 }
 
-.navs> a:hover {
+.navs> a:hover, a:visited {
 
     text-align: center;
     border-bottom: 2px solid transparent;

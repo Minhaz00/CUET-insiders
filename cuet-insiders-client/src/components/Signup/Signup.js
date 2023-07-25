@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
-// import { toast } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 import logo from '../../assets/images/logo/name-Logo.png'
 
 
@@ -42,7 +42,7 @@ const SignUp = () => {
                 setError("");
                 form.reset();
                 handleProfileUpdate(name, photoURL);
-                // toast.success("Account created successfully!");
+                toast.success("Account created successfully!");
             })
             .catch(error => {
                 console.error(error);

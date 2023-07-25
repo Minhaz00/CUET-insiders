@@ -22,8 +22,8 @@ const Header = () => {
     }
 
     return (
-        <div>
-            <Navbar expand="lg" className="bg-body-tertiary">
+        <div className='navbar'>
+            <Navbar expand="lg">
                 <Container fluid>
                     <Navbar.Brand href="/" >
                         <img className='logo' src={logo} alt="" srcset="" />
@@ -31,7 +31,7 @@ const Header = () => {
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav
-                            className="me-auto my-2 my-lg-0 navs"
+                            className="me-auto my-2 my-lg-0 navs mx-auto"
                             style={{ maxHeight: '100px' }}
                             navbarScroll
                         >
@@ -40,7 +40,7 @@ const Header = () => {
                             <Link to="/events">Events</Link>
                             <Link to="/news">News</Link>
                         </Nav>
-                        <Form className="d-flex">
+                        {/* <Form className="d-flex">
                             <Form.Control
                             type="search"
                             placeholder="Search"
@@ -48,7 +48,7 @@ const Header = () => {
                             aria-label="Search"
                             />
                             <Button variant="outline-dark"><FaSearch/></Button>
-                        </Form>
+                        </Form> */}
 
                         <Navbar.Text>
                             
@@ -56,22 +56,22 @@ const Header = () => {
                                 <>
                                     {/* <small>{user.displayName}{" "}</small> */}
                                     {user.photoURL ?
-                                        <Image className='ms-2 me-2' style={{ width: "45px" }} roundedCircle src={user.photoURL}></Image>
+                                        <Image className='ms-2 me-2' style={{ width: "40px" }} roundedCircle src={user.photoURL}></Image>
                                         :
                                         <FaUserCircle className='ms-2 me-2' style={{ fontSize: "35px" }}></FaUserCircle>
                                     }
-                                    <button onClick={handleSignOut} className='btn btn-outline-dark'>
-                                        <FaSignOutAlt></FaSignOutAlt>{" Logout"}
+                                    <button onClick={handleSignOut} className='btn btn-outline-dark py-1'>
+                                        <FaSignOutAlt></FaSignOutAlt> Logout
                                     </button>
 
                                 </>
                                 :
                                 <>
                                     <Link to={`/login`}>
-                                        <button className='ms-2 btn btn-outline-dark'>Login</button>
+                                        <button className='ms-2 btn btn-outline-dark py-1'>Login</button>
                                     </Link>
                                     <Link to={`/register`}>
-                                        <button className='ms-2 btn btn-outline-dark'>Signup</button>
+                                        <button className='ms-2 btn btn-outline-dark py-1'>Signup</button>
                                     </Link>
                                 </>
                             }

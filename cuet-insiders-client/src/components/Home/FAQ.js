@@ -27,18 +27,19 @@ const FAQ = () => {
                     </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="3">
-                    <Accordion.Header>Can I post my own content, such as articles or updates, on the platform?</Accordion.Header>
+                    <Accordion.Header>Can I post my own content on the platform?</Accordion.Header>
                     <Accordion.Body>
                     Yes, many mentor finder websites allow users to create and share their own content, such as articles, updates, or success stories. This can help you engage with the community and showcase your knowledge and experiences.
                     </Accordion.Body>
                 </Accordion.Item>
-                <Accordion.Item eventKey="4">
+                {/* <Accordion.Item eventKey="4">
                     <Accordion.Header>How do I search for a mentor on the platform?</Accordion.Header>
                     <Accordion.Body>
                     To find a mentor, simply use the search feature on the website. You can enter keywords related to your interests or specific skills you want to develop. The platform will then present a list of potential mentors matching your criteria.
                     </Accordion.Body>
-                </Accordion.Item>
+                </Accordion.Item> */}
             </Accordion>
+
         </div>
     );
 };
