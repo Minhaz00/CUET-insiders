@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logoname from '../../assets/images/logo/Full name logo.png'
+import logoname from '../../assets/images/logo/Full name logo.png';
+import img1 from '../../assets/images/Home/undraw_Remote_meeting_re_abe7-removebg-preview.png'
 import img2 from '../../assets/images/Home/undraw_Solution_mindset_re_57bf-removebg-preview.png'
 import img3 from '../../assets/images/Home/undraw_Questions_re_1fy7-removebg-preview.png'
 import img4 from '../../assets/images/Home/undraw_Researching_re_fuod-removebg-preview.png'
 import img5 from '../../assets/images/Home/undraw_Up_to_date_re_nqid-removebg-preview.png'
 import img6 from '../../assets/images/Home/undraw_schedule_meeting_52nu-removebg-preview.png'
+
 
 import './Home.css'
 import { FaArrowRight, FaWandMagicSparkles } from "react-icons/fa6";
@@ -15,8 +17,10 @@ import { doubleUnderline, exclamation, funUnderline, twoLines } from './SVGs';
 const Home = () => {
     return (
         <div className='main'>
+            
             <div className="section-1">
                 
+            {/* Banner section */}
             <div className="mb-5 d-flex justify-content-center align-items-center">
                 <div className='banner pt-5 pb-5 mt-5'>
                     
@@ -35,7 +39,8 @@ const Home = () => {
                     </Link>
                 </div> 
             </div>
-                
+
+                {/* Find mentor section */}
                 <div className="pb-5 pt-5 d-flex justify-content-center align-items-center">
                     <div className='left'>
                         <img src={img2} alt="" srcset="" />
@@ -51,6 +56,7 @@ const Home = () => {
                 </div>
                 
 
+                {/* Post section */}
                 <div className="pb-5 pt-5 d-flex justify-content-center align-items-center">
                     <div className='left'>
                         <h2  className='mb-0'>Unlock the power of knowledge sharing</h2>
@@ -63,14 +69,15 @@ const Home = () => {
 
                     </div>    
                     <div className='right'>
-                        <img src={img4} alt="" srcset="" />
+                        <img src={img5} alt="" srcset="" />
                     </div>
                 </div>
 
                 
+                {/* Appontment section  */}
                 <div className="pb-5 pt-5 d-flex justify-content-center align-items-center">
                     <div className='left'>
-                        <img src={img6} alt="" srcset="" />
+                        <img src={img1} alt="" srcset="" />
                     </div>    
                     <div className='right'>
                         <h2 className='mb-0'>Guided 1-on-1 Mentorship through appointment</h2>
@@ -85,6 +92,7 @@ const Home = () => {
                 </div>
 
                 
+                {/* Events section */}
                 <div className="pb-5 pt-5 d-flex justify-content-center align-items-center">
                     <div className='left'>
                         <h2  className='mb-0'>Empowering Minds Through Professional Events</h2>
@@ -97,14 +105,15 @@ const Home = () => {
 
                     </div>    
                     <div className='right'>
-                        <img src={img4} alt="" srcset="" />
+                        <img src={img6} alt="" srcset="" />
                     </div>
                 </div>
 
                 
+                {/* News section */}
                 <div className="pb-5 pt-5 d-flex justify-content-center align-items-center">
                     <div className='left'>
-                        <img src={img5} alt="" srcset="" />
+                        <img src={img4} alt="" srcset="" />
                     </div>    
                     <div className='right'>
                         <h2 className='mb-0'>The best source for Real-Time Campus News</h2>
@@ -119,6 +128,7 @@ const Home = () => {
                 </div>
 
 
+                {/* FAQ section */}
                 <div className="pb-5 pt-5 d-flex justify-content-center align-items-center">
                     <div className='left'>
                         <FAQ></FAQ>

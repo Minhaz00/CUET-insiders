@@ -1,4 +1,28 @@
-.footer a{
-    color: black;
+.footerImg{
+    width: 20%;
+    margin: 10px 40%;
+
+}
+
+.footer {
+    
+}
+
+.carImg{
+    height: 150px;
+    width: 230px;
+    margin: 10px auto;
+}
+
+.carosel-container{
+    width: 230px;
+}
+h5{
+   text-align: center;
+}
+
+.social-links a{
     text-decoration: none;
+    color: rgb(39, 35, 35);
+    /* font-size: small; */
 }
