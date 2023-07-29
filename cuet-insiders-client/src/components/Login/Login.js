@@ -27,7 +27,7 @@ const Login = () => {
         signIn(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
                 form.reset();
                 setError("");
                 navigate(from, { replace: true });
@@ -52,7 +52,7 @@ const Login = () => {
         <div className='login m-auto shadow rounded-4 mt-3 mb-5'>
             <div className='w-50 mt-3 m-auto text-center'>
                 <Link to={'/'}>
-                    <img className='w-100 mb-2' src={logo} alt="" srcset="" />
+                    <img className='w-100 mb-2' src={logo} alt="" />
                 </Link>
                 <h5>Login</h5>
             </div>

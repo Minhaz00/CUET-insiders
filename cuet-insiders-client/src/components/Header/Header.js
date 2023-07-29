@@ -26,7 +26,7 @@ const Header = () => {
             <Navbar expand="lg">
                 <Container fluid>
                     <Navbar.Brand href="/" >
-                        <img className='logo' src={logo} alt="" srcset="" />
+                        <img className='logo' src={logo} alt="" />
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
@@ -54,9 +54,10 @@ const Header = () => {
                             
                             {user ?
                                 <>
-                                    {/* <small>{user.displayName}{" "}</small> */}
                                     {user.photoURL ?
-                                        <Image className='ms-2 me-2' style={{ width: "40px" }} roundedCircle src={user.photoURL}></Image>
+                                        <Link to={`/user/${user.uid}`}>
+                                            <Image className='ms-2 me-2' style={{ width: "40px", height: "40px"}} roundedCircle src={user.photoURL}></Image>
+                                        </Link>
                                         :
                                         <FaUserCircle className='ms-2 me-2' style={{ fontSize: "35px" }}></FaUserCircle>
                                     }

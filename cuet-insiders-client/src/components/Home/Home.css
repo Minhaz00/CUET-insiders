@@ -24,13 +24,13 @@
     /* text-align: justify; */
 }
 .right img{
-    text-align: left;
     width: 95%;
 }
 .left{
     text-align: left;
     width: 45%;
 }
+
 .left img{
     width: 95%;
 }
@@ -39,4 +39,8 @@
     margin-top: 0 !important;
 }
 
+
+/* background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8AoCxcX1i8Y5rvoL7LRyhTVGsATZE0RM5RA&usqp=CAU);
+background-repeat: no-repeat;
+background-size: 100px 200px; */
 

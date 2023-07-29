@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useLoaderData } from 'react-router-dom';
 import AllPosts from './AllPosts';
@@ -7,17 +7,31 @@ import Rightnav from './Rightnav';
 
 const Feed = () => {
 
-    // cosnt post = useLoaderData();
+    const [posts, setPosts] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/posts')
+            .then(res => res.json())
+            .then(data => setPosts(data));
+    }, [posts]);
+
+    posts.sort(function(a, b) {
+        let keyA = new Date(a.pubDate);
+        let keyB = new Date(b.pubDate);
+        if (keyA > keyB) return -1;
+        if (keyA < keyB) return 1;
+        return 0;
+      });
+      
 
     return (
         <div>
-            <Container className='mt-4'>
+            <Container className='mt-3'>
                 <Row>
                     <Col lg='3'>
                         <Leftnav></Leftnav>
                     </Col>                        
                     <Col lg='6'>
-                        <AllPosts></AllPosts>
+                        <AllPosts posts={posts}></AllPosts>
                     </Col>
                     <Col lg='3'>
                         <Rightnav></Rightnav>

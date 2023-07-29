@@ -20,10 +20,10 @@ const Footer = () => {
     return (
 
         <div className='pb-2 mt-5 border-top footer'>
-            <img className='footerImg' src={logo} alt="" srcset="" />
+            <img className='footerImg' src={logo} alt="" />
             <div className='mx-auto d-flex justify-content-around'>
                 <div className="social-links mt-3">
-                    <h5>Find us</h5>
+                    <h5 className='text-center'>Find us</h5>
                     <ListGroup>
                         <ListGroup.Item className=' bg-body-secondary bg-opacity-10'>
                         <a  href="http://facebook.com"> <FaFacebook/> Facebook</a>
@@ -42,7 +42,7 @@ const Footer = () => {
                 </div>
                 
                 <div className="social-links mt-3">
-                    <h5>Navigate to</h5>
+                    <h5 className='text-center'>Navigate to</h5>
                     <ListGroup>
                         <ListGroup.Item className=' bg-body-secondary bg-opacity-10'>
                         <Link to={'/'}><FaHouseMedical/> Home</Link>
@@ -60,7 +60,7 @@ const Footer = () => {
                 </div>
 
                 <div className="carosel-container mt-3">
-                    <h5>Featured Clubs</h5>
+                    <h5 className='text-center'>Featured Clubs</h5>
                     <Carousel>
                         <Carousel.Item>
                             <img

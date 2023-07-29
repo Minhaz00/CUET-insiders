@@ -11,6 +11,7 @@ import News from "../../components/News/News";
 import NewsDetails from "../../components/News/NewsDetails";
 import CategoryNews from "../../components/News/CategoryNews";
 import Feed from "../../components/Feed/Feed";
+import Profile from "../../components/Profile/Profile";
 
 
 export const router = createBrowserRouter([
@@ -26,7 +27,6 @@ export const router = createBrowserRouter([
             {
                 path: '/feed',
                 element: <PrivateRoute><Feed></Feed></PrivateRoute> ,
-                
             },
             {
                 path: '/events',
@@ -61,6 +61,12 @@ export const router = createBrowserRouter([
             {
                 path: '/TandC',
                 element: <TandC></TandC>
+            },
+            {
+                path: '/user/:id',
+                element: <Profile></Profile>,
+                loader: ({params}) => fetch(`http://localhost:5000/user/${params.id}`)
+                
             },
             {
                 path: '/login',

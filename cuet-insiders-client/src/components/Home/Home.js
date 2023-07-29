@@ -43,7 +43,7 @@ const Home = () => {
                 {/* Find mentor section */}
                 <div className="pb-5 pt-5 d-flex justify-content-center align-items-center">
                     <div className='left'>
-                        <img src={img2} alt="" srcset="" />
+                        <img src={img2} alt=""   />
                     </div>    
                     <div className='right'>
                         <h2 className=' mb-0'>Find mentors of your choice</h2>
@@ -69,7 +69,7 @@ const Home = () => {
 
                     </div>    
                     <div className='right'>
-                        <img src={img5} alt="" srcset="" />
+                        <img src={img5} alt=""   />
                     </div>
                 </div>
 
@@ -77,7 +77,7 @@ const Home = () => {
                 {/* Appontment section  */}
                 <div className="pb-5 pt-5 d-flex justify-content-center align-items-center">
                     <div className='left'>
-                        <img src={img1} alt="" srcset="" />
+                        <img src={img1} alt=""   />
                     </div>    
                     <div className='right'>
                         <h2 className='mb-0'>Guided 1-on-1 Mentorship through appointment</h2>
@@ -105,7 +105,7 @@ const Home = () => {
 
                     </div>    
                     <div className='right'>
-                        <img src={img6} alt="" srcset="" />
+                        <img src={img6} alt=""   />
                     </div>
                 </div>
 
@@ -113,7 +113,7 @@ const Home = () => {
                 {/* News section */}
                 <div className="pb-5 pt-5 d-flex justify-content-center align-items-center">
                     <div className='left'>
-                        <img src={img4} alt="" srcset="" />
+                        <img src={img4} alt=""   />
                     </div>    
                     <div className='right'>
                         <h2 className='mb-0'>The best source for Real-Time Campus News</h2>
@@ -137,7 +137,7 @@ const Home = () => {
                         </Link>
                     </div>    
                     <div className='right'>
-                        <img src={img3} alt="" srcset="" />
+                        <img src={img3} alt=""   />
                     </div>
                 </div>
 
