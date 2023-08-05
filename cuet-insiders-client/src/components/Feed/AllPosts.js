@@ -1,18 +1,27 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
 import { Button, Form, Image, Modal } from 'react-bootstrap';
 import { FaImage, FaSquareArrowUpRight } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import './Allpost.css';
 import Postcard from './Postcard';
+import demoDp from '../../assets/images/logo/user.png'
 
+const AllPosts = ({posts, ProfileUserId}) => {
 
-const AllPosts = ({posts}) => {
-
-    const { user } = useContext(AuthContext);           // firebase user
+    const { user, currUser } = useContext(AuthContext);  // firebase user
     const [show, setShow] = useState(false);            // for modal
     const [postImg, setPostImg] = useState('');         // for post image
     const [postText, setPostText] = useState('');       // for post text
+    const [usr, setUsr] = useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:5000/user/${user.uid}`)
+            .then(res => res.json())
+            .then(data => {
+                setUsr(data.userProfile[0])
+                // console.log(usr);
+            });
+    }, [usr]);
 
 
     const handleShow = () => {                          // for modal open
@@ -70,57 +79,63 @@ const AllPosts = ({posts}) => {
     return (
         <div>
             {/* Upload post */}
-            <div>
-                <div  className='rounded-3 py-3 px-1 border-0 shadow-sm'>
-                    <Link to={`/user/${user.uid}`}>
-                        <Image className='ms-2 me-2' style={{ width: "50px", height: "50px"}} roundedCircle src={user.photoURL}></Image>
-                    </Link>
+            {
+                user.uid === ProfileUserId ?
+                     // current user can upload post from own profile
+                    <div>
+                        <div  className='rounded-3 py-3 px-1 border-0 shadow-sm'>
+                            <Link to={`/user/${user.uid}`}>
+                                <Image className='ms-2 me-2 d-inline' style={{ width: "50px", height: "50px"}} roundedCircle src={(usr?.photoURL)?usr.photoURL:demoDp}></Image>
+                            </Link>
 
-                    <Button className='btn p-0 post-input rounded-3 bg-body-tertiary border-0' onClick={handleShow}>
-                        <input className='w-100 shadow-sm border rounded-3 bg-body-tertiary postInput' type="text" name="" id="" placeholder="Start a post ..."/>
-                    </Button>
-                </div>
+                            <Button className='btn p-0 post-input rounded-3 bg-body-tertiary border-0' onClick={handleShow}>
+                                <input className='w-100 shadow-sm border rounded-3 bg-body-tertiary postInput' type="text" name="" id="" placeholder="Start a post ..."/>
+                            </Button>
+                        </div>
 
-                {/* ======= POST MODAL ====== */}
-                <Modal show={show} onHide={handleClose} >
-                    
-                    <Modal.Header closeButton>
-                        <Modal.Title><small>Create post</small> </Modal.Title>
-                    </Modal.Header>
+                        {/* ======= POST MODAL ====== */}
+                        <Modal show={show} onHide={handleClose} >
+                            
+                            <Modal.Header closeButton className='pt-2 pb-1'>
+                                <Modal.Title><small>Create post</small> </Modal.Title>
+                            </Modal.Header>
 
-                    <Modal.Body>
-                        <Form>
+                            <Modal.Body>
+                                <Form>
+                                        
+                                    <Form.Group
+                                    className="mb-3 border-0"
+                                    controlId="exampleForm.ControlTextarea1"
+                                    >
+                                        <Form.Control className='shadow-sm' placeholder="What's on your mind?" as="textarea" rows={5} onBlur={postTextHandle}/>
+                                    </Form.Group>
+
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>
+                                            <h3  className='d-inline'><FaImage/></h3>
+                                        </Form.Label>
+                                        <Form.Control
+                                            className='fileInput ms-2 shadow-sm d-inline'
+                                            type="file"
+                                            autoFocus
+                                            onChange={convertBase64}
+                                        />
+                                    </Form.Group>
                                 
-                            <Form.Group
-                            className="mb-3 border-0"
-                            controlId="exampleForm.ControlTextarea1"
-                            >
-                                <Form.Control className='shadow-sm' placeholder="What's on your mind?" as="textarea" rows={5} onBlur={postTextHandle}/>
-                            </Form.Group>
+                                </Form>
+                            </Modal.Body>
 
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>
-                                    <h3  className='d-inline'><FaImage/></h3>
-                                </Form.Label>
-                                <Form.Control
-                                    className='fileInput ms-2 shadow-sm d-inline'
-                                    type="file"
-                                    autoFocus
-                                    onChange={convertBase64}
-                                />
-                            </Form.Group>
-                        
-                        </Form>
-                    </Modal.Body>
+                            <Modal.Footer>
+                                <Button className='w-100' variant="dark" onClick={handlePost}>
+                                    Post <FaSquareArrowUpRight/>
+                                </Button>
+                            </Modal.Footer>
 
-                    <Modal.Footer>
-                        <Button className='w-100' variant="dark" onClick={handlePost}>
-                            Post <FaSquareArrowUpRight/>
-                        </Button>
-                    </Modal.Footer>
-
-                </Modal>
-            </div>
+                        </Modal>
+                    </div>
+                    :
+                    <></>
+            }
 
             
             {/* Show all posts */}

@@ -7,9 +7,9 @@ const auth = getAuth(app)
 
 const AuthProvider = ({ children }) => {
 
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [currUser, setCurrUser] = useState({});
+    const [currUser, setCurrUser] = useState([]);
     
     const googleProviderLogin = (provider) => {
         setLoading(true);
@@ -49,11 +49,15 @@ const AuthProvider = ({ children }) => {
             deptName: '',
             position: '',
             institution: '',
-            studentId: '',
+            batch: '',
             currentLoc: '',
             facebook: '',
             linkedin: '',
-            interests: [],
+            mailSocial: '',
+            interests: '',
+            followers: [],
+            following: [],
+            bookmarks: []
         };
         if(user.email) setCurrUser(newUser);
         if (user.email && user.displayName) {        

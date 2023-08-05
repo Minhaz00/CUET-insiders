@@ -1,0 +1,13 @@
+.appointment-nav > ul > li > a{
+    color: black;
+    text-decoration: none;
+    margin: 10px ;
+    padding: 8px 40px;
+    border: 1px solid gray;
+    border-radius: 8px;
+}
+
+
+.appointment-nav > ul {
+    list-style-type: none;
+}

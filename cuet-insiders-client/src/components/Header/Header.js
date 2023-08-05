@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -8,21 +8,37 @@ import logo from '../../assets/images/logo/logo.png';
 import { FaSearch, FaSignOutAlt } from "react-icons/fa";
 import './Header.css';
 import { AuthContext } from '../../context/AuthProvider';
-import { Image } from 'react-bootstrap';
+import { Dropdown, Image, NavDropdown } from 'react-bootstrap';
 import { FaUserCircle } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import demoDp from '../../assets/images/logo/user.png';
+import { FaBookmark, FaRegAddressCard, FaRegCalendarCheck } from 'react-icons/fa6';
 
 const Header = () => {
 
-    const { user, logout } = useContext(AuthContext);
+    const { user, currUser, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const [usr, setUsr] = useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:5000/user/${currUser.userId}`)
+            .then(res => res.json())
+            .then(data => {
+                setUsr(data.userProfile[0])
+            });
+    }, [currUser]);
+
     const handleSignOut = () => {
         logout()
             .then(() => console.log("logged out successfully!"))
-            .catch ((error) => console.error(error));
+            .catch((error) => console.error(error));
+        
+        navigate('/')
     }
+    
 
     return (
-        <div className='navbar'>
+        <div className='navbar border-secondary-subtle'>
             <Navbar expand="lg">
                 <Container fluid>
                     <Navbar.Brand href="/" >
@@ -39,32 +55,46 @@ const Header = () => {
                             <Link to="/feed">Feed</Link>
                             <Link to="/events">Events</Link>
                             <Link to="/news">News</Link>
+
                         </Nav>
+                        
                         {/* <Form className="d-flex">
-                            <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                            />
+                            <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search"                            />
                             <Button variant="outline-dark"><FaSearch/></Button>
                         </Form> */}
 
                         <Navbar.Text>
                             
-                            {user ?
+                            {(user && usr)?
                                 <>
-                                    {user.photoURL ?
-                                        <Link to={`/user/${user.uid}`}>
-                                            <Image className='ms-2 me-2' style={{ width: "40px", height: "40px"}} roundedCircle src={user.photoURL}></Image>
-                                        </Link>
-                                        :
-                                        <FaUserCircle className='ms-2 me-2' style={{ fontSize: "35px" }}></FaUserCircle>
-                                    }
-                                    <button onClick={handleSignOut} className='btn btn-outline-dark py-1'>
-                                        <FaSignOutAlt></FaSignOutAlt> Logout
-                                    </button>
+                                                  
+                                    <Dropdown>  
+                                        <Dropdown.Toggle variant=""  id="dropdown-basic">
+                                            {(usr?.photoURL) ?
+                                                <Image className=' me-2' style={{ width: "40px", height: "40px"}} roundedCircle src={usr.photoURL}></Image>
+                                                :
+                                                <Image className=' me-2' style={{ width: "40px", height: "40px"}} roundedCircle src={demoDp}></Image>
+                                            }
+                                        </Dropdown.Toggle>
 
+                                        <Dropdown.Menu>
+                                            <Dropdown.Item>
+                                                <Link className=' text-decoration-none' to={`/user/${user?.uid}`}>My profile</Link>
+                                            </Dropdown.Item>
+
+                                            <Dropdown.Item>
+                                                <Link className=' text-decoration-none' to={'/appointments'}>Appointments</Link>
+                                            </Dropdown.Item>
+
+                                            <Dropdown.Item>
+                                                <Link className=' text-decoration-none' to={'bookmarks'}>Saved items</Link>
+                                            </Dropdown.Item>
+
+                                            <Dropdown.Item onClick={handleSignOut} className=' text-danger'>
+                                               Logout
+                                            </Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
                                 </>
                                 :
                                 <>

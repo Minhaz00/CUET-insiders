@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {Button, Card, Form, Image, Modal} from 'react-bootstrap';
 import { FaBookmark, FaShareNodes, FaEye, FaStar, FaShare, FaSquareArrowUpRight } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
@@ -16,6 +16,7 @@ const Postcard = ({ post }) => {
         postImage,
         author,
         authorImg,
+        authorId,
         likes,
         comments
     } = post;
@@ -28,10 +29,18 @@ const Postcard = ({ post }) => {
 
     const [togglePost, setTogglePost] = useState(true);
     const [toggleLikes, setToggleLikes] = useState(isLikedPost());
-    const [postComments, setPostComments] = useState([]);
     const [show, setShow] = useState(false);
     const [commentText, setCommentText] = useState('');       // for post comment text 
-
+    const [usr, setUsr] = useState([]);
+    
+    useEffect(() => {
+        fetch(`http://localhost:5000/user/${authorId}`)
+            .then(res => res.json())
+            .then(data => {
+                setUsr(data.userProfile[0])
+                // console.log(usr);
+            });
+    }, [usr]);
 
     //==================== toggling see more / see less  
     const handleTogglePost = () => {
@@ -94,15 +103,19 @@ const Postcard = ({ post }) => {
 
     return (
         <div>
-            <Card className='mt-3'>
+            <Card className='mt-3 shadow-sm'>
                 <Card.Header className='py-0'>
                     <div className="d-flex justify-content-between">
                         <div className="author-details d-flex align-items-center">
-                            <Image className='m-0' style={{ width: "45px", height: "45px"}} roundedCircle src={authorImg} alt="" />
+                            
+                            <Link to={`/user/${authorId}`}><Image className='m-0' style={{ width: "45px", height: "45px" }} roundedCircle src={usr.photoURL} alt="" /></Link>
+
                             <div className='my-2 ms-2'>
-                                <p className='mb-0 fw-semibold'>{author}</p>
-                                <p className='mb-0'><small>{pubDate.slice(0, 10)}{"  "}{pubDate.slice(12, 16)}</small></p>
+                                <Link className='text-decoration-none text-body' to={`/user/${authorId}` }><p className='mb-0 fw-semibold'>{usr.displayName}</p></Link>
+                                
+                                <p className='mb-0 text-muted'><small>{pubDate.slice(0, 10)}{"  "}{pubDate.slice(12, 16)}</small></p>
                             </div>
+
                         </div>
                         <div className='d-flex justify-content-center align-items-center'>
                             <FaBookmark className='me-2'></FaBookmark>
@@ -146,15 +159,15 @@ const Postcard = ({ post }) => {
                     
                     <button className={toggleLikes ? 'btn px-4 text-primary': 'btn px-4'} onClick={handleLikes}> <BiSolidLike /> {likes?.length}</button>
                     <button className='btn px-4' onClick={handleShow}> <BiSolidComment/> {comments?.length}</button>
-                    <button className='btn px-4'> <FaShare/> 22</button>
+                    <button className='btn px-4'> <FaShare/> 0</button>
                 </Card.Footer>
             </Card>
 
             
             {/* Upload comment and show all comments for a post in Modal */}
-            <Modal show={show} onHide={handleClose} >
+            <Modal show={show} onHide={handleClose} scrollable>
                     
-                <Modal.Header closeButton className='py-1'>
+                <Modal.Header closeButton className='pt-2 pb-1'>
                     <Modal.Title><small>Comments</small> </Modal.Title>
                 </Modal.Header>
                 
@@ -176,6 +189,7 @@ const Postcard = ({ post }) => {
                 <div className='mx-3'>
                     {
                         comments?.map(comment => <ShowComments
+                            key={comments.indexOf(comment)}
                             comment={comment}
                         ></ShowComments>)    
                     }

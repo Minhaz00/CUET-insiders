@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const ShowComments = ({ comment }) => {
     // console.log(comment);
@@ -7,17 +8,17 @@ const ShowComments = ({ comment }) => {
     const [commenterName, setCommenterName] = useState('');
 
     //showing user name from user data so that any change in user reflects here as well
-    useEffect(() => {
+    useEffect( () => {
         fetch(`http://localhost:5000/user/${commenterId}`)
             .then(res => res.json())
-            .then(data => setCommenterName(data[0].displayName));
+            .then(data => setCommenterName(data.userProfile[0]?.displayName));
     }, [])
 
     return (
         
         <Card className='mt-0 mb-2'>
                 <Card.Header className='py-0 d-flex justify-content-between'>
-                    <p className='m-0 fw-bold'><small>{commenterName}</small></p>
+                    <Link className='text-decoration-none' to={`/user/${commenterId}`}><p className='m-0 fw-bold text-dark'><small>{commenterName}</small></p></Link>
                 <p className='m-0 text-muted'><small>{commentDate.slice(0, 10)}{" "}{commentDate.slice(12, 16)}</small></p>
                 </Card.Header>
                 
@@ -27,12 +28,6 @@ const ShowComments = ({ comment }) => {
                     </Card.Text>
                 </Card.Body>
             </Card>
-        
-        // <div className='border shadow'>
-        //     <p className='m-0'><small>{commenterName}</small></p>
-        //     <p className='m-0 text-muted'><small>{commentDate}</small></p>
-        //     <p className='m-0 fst-italic text-muted'><small>{commText}</small></p>
-        // </div>
     );
 };
 

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import { toast } from 'react-hot-toast';
 import logo from '../../assets/images/logo/name-Logo.png'
@@ -9,6 +9,7 @@ import logo from '../../assets/images/logo/name-Logo.png'
 
 const SignUp = () => {
 
+    const navigate = useNavigate();
     const [error, setError] = useState("");
     const [TAndCAccepted, setTAndCAccepted] = useState(false);
     const { user, setUser, createUser, updateUserProfile } = useContext(AuthContext);
@@ -20,10 +21,9 @@ const SignUp = () => {
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
-        const photoURL = form.photoURL.value;
         const password = form.password.value;
         const confirm = form.confirm.value;
-        console.log(name, email, name, password, confirm, photoURL);
+        console.log(name, email, name, password, confirm);
 
         if (password.length < 6) {
             setError("Password must be at least 6 characters!");
@@ -38,23 +38,21 @@ const SignUp = () => {
         createUser(email, password)
             .then(result => {
                 setUser(result.user);
-                console.log(user);
                 setError("");
                 form.reset();
-                handleProfileUpdate(name, photoURL);
+                handleProfileUpdate(name);
                 toast.success("Account created successfully!");
             })
             .catch(error => {
-                console.error(error);
                 setError(error.message);
             });
+        navigate('/');
         
     }
 
-    const handleProfileUpdate = (name, photoURL) => {
+    const handleProfileUpdate = (name) => {
         const profile = {
             displayName: name,
-            photoURL: photoURL
         }
         updateUserProfile(profile)
             .then(() => { })
@@ -84,10 +82,10 @@ const SignUp = () => {
                     <Form.Control name='email' type="email" placeholder="Enter email"  required/>
                 </Form.Group>
                 
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                {/* <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Photo URL</Form.Label>
                     <Form.Control name='photoURL' type="text" placeholder="Enter photoURL" />
-                </Form.Group>
+                </Form.Group> */}
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>

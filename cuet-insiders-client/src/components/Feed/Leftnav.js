@@ -1,29 +1,39 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Leftnav.css';
 import { AuthContext } from '../../context/AuthProvider';
 import { Link } from 'react-router-dom';
+import demoCover from '../../assets/images/logo/demo-cover.jpg';
+import demoDp from '../../assets/images/logo/user.png';
 
 
 const Leftnav = () => {
 
-    const { currUser } = useContext(AuthContext);
-    const { displayName, photoURL, bio, coverURL, userId } = currUser;
+    const { user } = useContext(AuthContext);    
+    const [usr, setUsr] = useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:5000/user/${user.uid}`)
+            .then(res => res.json())
+            .then(data => {
+                setUsr(data.userProfile[0])
+                // console.log(usr);
+            });
+    }, [usr]);
 
     return (
-        <div className="card sticky-md-top border ">
+        <div className="card sticky-md-top border shadow-sm">
             <div className="upper">
-                <img src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmFjZWJvb2slMjBjb3ZlcnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80" alt="" />
+                <img src={usr.coverURL?usr.coverURL:demoCover} alt="" />
             </div>
             <div className="user text-center">
                 <div className="profile">
-                    <Link to={`/user/${userId}`}><img src={photoURL} className="rounded-circle" width="80" alt="" /></Link>
+                    <Link to={`/user/${user.uid}`}><img src={usr.photoURL? usr.photoURL:demoDp} className="rounded-circle" width="80" alt="" /></Link>
                 </div>
             </div>
 
             <div className='mt-5 text-center'>
-                <Link className='text-decoration-none text-body' to={`/user/${userId}`}><p className='fw-bold mb-0'>{displayName}</p></Link>
+                <Link className='text-decoration-none text-body' to={`/user/${user.uid}`}><p className='fw-bold mb-0 mx-1'>{usr.displayName}</p></Link>
                 
-                <p className='mb-0'><small>Bio : {bio}</small></p>
+                <p className='mb-0'><small>{usr.bio}</small></p>
             </div>
 
             <hr></hr>
@@ -31,15 +41,15 @@ const Leftnav = () => {
             <div>
                 <div className="d-flex justify-content-between px-3">
                     <p><small>Followers: </small></p>
-                    <p><small>22</small></p>
+                    <p><small>{usr?.followers?.length}</small></p>
                 </div>
                 <div className="d-flex justify-content-between px-3">
                     <p><small>Following: </small></p>
-                    <p><small>22</small></p>
+                    <p><small>{usr?.following?.length}</small></p>
                 </div>
                 <div className="d-flex justify-content-between px-3">
                     <p><small>My items: </small></p>
-                    <p><small>22</small></p>
+                    <p><small>{usr?.bookmarks?.length}</small></p>
                 </div>
             </div>
         </div>

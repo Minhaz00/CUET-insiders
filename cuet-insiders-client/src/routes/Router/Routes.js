@@ -12,6 +12,8 @@ import NewsDetails from "../../components/News/NewsDetails";
 import CategoryNews from "../../components/News/CategoryNews";
 import Feed from "../../components/Feed/Feed";
 import Profile from "../../components/Profile/Profile";
+import Appointments from "../../components/Appointments/Appointments";
+import Bookmarks from "../../components/Bookmarks/Bookmarks";
 
 
 export const router = createBrowserRouter([
@@ -67,6 +69,14 @@ export const router = createBrowserRouter([
                 element: <Profile></Profile>,
                 loader: ({params}) => fetch(`http://localhost:5000/user/${params.id}`)
                 
+            },
+            {
+                path: '/appointments',
+                element: <Appointments></Appointments>                
+            },
+            {
+                path: '/bookmarks',
+                element: <Bookmarks></Bookmarks>
             },
             {
                 path: '/login',
