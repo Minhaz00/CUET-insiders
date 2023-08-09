@@ -9,45 +9,44 @@ import ShowComments from './ShowComments';
 const Postcard = ({ post }) => {
 
     const { user } = useContext(AuthContext);
+    
     const {
         _id,
         pubDate,
         postDetails,
-        postImage,
-        author,
-        authorImg,
+        postImage,   
         authorId,
         likes,
         comments
     } = post;
+       
+    const [usr, setUsr] = useState([]);  
+    const [books, setBooks] = useState([]);
+    const [toggleBookmark, setToggleBookmark] = useState(false);
 
-    //=================== checking if user liked this post before
+    useEffect(() => {
+        fetch(`http://localhost:5000/user/${authorId}`)
+            .then(res => res.json())
+            .then(data => {
+                setUsr(data[0]);
+                setBooks(data[0]?.bookmarks);
+            })
+    }, [usr]);
+
+    //==================== toggling see more / see less ================================== 
+    const [togglePost, setTogglePost] = useState(true);
+    const handleTogglePost = () => {
+        setTogglePost(togglePost ^ 1);
+    }
+
+    //==================== liking post and sending it to DB ==============================
     const isLikedPost = () => {
         let usr = likes?.find(u => u === user.uid)
         return usr ? true : false; 
     }
 
-    const [togglePost, setTogglePost] = useState(true);
     const [toggleLikes, setToggleLikes] = useState(isLikedPost());
-    const [show, setShow] = useState(false);
-    const [commentText, setCommentText] = useState('');       // for post comment text 
-    const [usr, setUsr] = useState([]);
-    
-    useEffect(() => {
-        fetch(`http://localhost:5000/user/${authorId}`)
-            .then(res => res.json())
-            .then(data => {
-                setUsr(data[0])
-                // console.log(usr);
-            });
-    }, [usr]);
 
-    //==================== toggling see more / see less  
-    const handleTogglePost = () => {
-        setTogglePost(togglePost ^ 1);
-    }
-
-    //==================== liking post and sending it to DB
     const handleLikes = () => {
         setToggleLikes(toggleLikes ^ 1);
 
@@ -66,17 +65,19 @@ const Postcard = ({ post }) => {
             .catch(err => console.error(err));
     }
 
-    // =================== Comment-modal open / close
+    // =================== Comment-modal open / close ===================
+    const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
 
-    // =================== storing comment text
+    // =================== storing comment text===========================
+    const [commentText, setCommentText] = useState('');
     const commentTextHandle = (event) => {              
         const text = event.target.value;
         setCommentText(text);
     }
 
-    // =================== Saving the comment
+    // =================== Saving the comment=============================
     const handleComment = () => {
         setShow(false);
         let commText = commentText;
@@ -101,8 +102,25 @@ const Postcard = ({ post }) => {
     }
     
 
+    // =================== handling bookmark =============================
+
     const handleBookmark = () => {
-        
+        setToggleBookmark(toggleBookmark ^ 1);
+        const userId = user?.uid;
+        const postId = _id;
+        const bookmarkObj = { userId, postId };
+
+         fetch(`http://localhost:5000/bookmark`, {
+            method: 'POST',
+            headers: {
+                "content-type": 'application/json'
+            },
+            body: JSON.stringify(bookmarkObj)
+        })
+            .then(res => res.json())
+            .then(data => {})
+            .catch(err => console.error(err));
+
     }
 
 
@@ -113,21 +131,24 @@ const Postcard = ({ post }) => {
                     <div className="d-flex justify-content-between">
                         <div className="author-details d-flex align-items-center">
                             
-                            <Link to={`/user/${authorId}`}><Image className='m-0' style={{ width: "45px", height: "45px" }} roundedCircle src={usr.photoURL} alt="" /></Link>
+                            <Link to={`/user/${authorId}`}>
+                                <Image className='m-0' style={{ width: "45px", height: "45px" }} roundedCircle src={usr?.photoURL} alt="" />
+                            </Link>
 
                             <div className='my-2 ms-2'>
-                                <Link className='text-decoration-none text-body' to={`/user/${authorId}` }><p className='mb-0 fw-semibold'>{usr.displayName}</p></Link>
+                                <Link className='text-decoration-none text-body' to={`/user/${authorId}`}>
+                                    <p className='mb-0 fw-semibold'>{usr?.displayName}</p>
+                                </Link>
                                 
-                                <p className='mb-0 text-muted'><small>{pubDate.slice(0, 10)}{"  "}{pubDate.slice(12, 16)}</small></p>
+                                <p className='mb-0 text-muted'>
+                                    <small>{pubDate.slice(0, 10)}{"  "}{pubDate.slice(12, 16)}</small>
+                                </p>
                             </div>
 
                         </div>
-                        <button className={toggleLikes ? 'btn px-4 text-primary' : 'btn px-4'} onClick={handleBookmark}>
+                        <button className={toggleBookmark ? 'btn text-primary' : 'btn'} onClick={handleBookmark}>
                             <FaBookmark />
                         </button>
-                        {/* <div className='d-flex justify-content-center align-items-center' onClick={handleBookmark}>
-                            <FaBookmark className='me-2'></FaBookmark>
-                        </div> */}
                     </div>
                 </Card.Header>
 

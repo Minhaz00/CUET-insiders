@@ -57,7 +57,7 @@ const AuthProvider = ({ children }) => {
             interests: '',
             followers: [],
             following: [],
-            bookmarks: []
+            bookmarks: [1]
         };
         if(user.email) setCurrUser(newUser);
         if (user.email && user.displayName) {        

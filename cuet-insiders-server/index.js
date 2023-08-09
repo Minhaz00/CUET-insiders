@@ -284,6 +284,47 @@ async function run() {
 		})
 
 
+		// post bookmark
+		app.post('/bookmark', async (req, res) => {
+			const { userId, postId } = req.body;
+			const filter = { userId: userId };
+			const cursor = userCollection.find(filter);
+			const usr = await cursor.toArray();
+
+			const temp = usr[0].bookmarks.find(pId => pId === postId);
+			if (temp === undefined) {
+				const newBookmarkArr = [...usr[0].bookmarks, postId];
+				const option = { upsert: true };
+				const updateBookmarks = {
+				$set: {
+					bookmarks: newBookmarkArr,
+				},
+				};
+				const result = await userCollection.updateOne(
+					filter,
+					updateBookmarks,
+					option
+				);
+				res.send(result);
+			}
+			else {
+				const newBookmarkArr = usr[0].bookmarks.filter(pId => pId !== postId)
+				const option = { upsert: true };
+				const updateBookmarks = {
+				$set: {
+					bookmarks: newBookmarkArr,
+				},
+				};
+				const result = await userCollection.updateOne(
+					filter,
+					updateBookmarks,
+					option
+				);
+				res.send(result);
+			}
+		})
+
+
 
 
 		// ============================= READ =================================== 

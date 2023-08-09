@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
-import SavedCard from './SavedCard';
+import SavedPost from './SavedPost';
 
 const Bookmarks = () => {
 
@@ -32,14 +32,14 @@ const Bookmarks = () => {
                             </p>
                         </>
                         :
-                        <>
+                        <div className=' d-flex'>
                             {
-                                savedPosts.map(post => <SavedCard
+                                savedPosts.map(post => <SavedPost
                                     key={post}
                                     post={post}
-                                ></SavedCard>)
+                                ></SavedPost>)
                             }
-                        </>
+                        </div>
                 }
             </div>
         </div>

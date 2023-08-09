@@ -10,7 +10,7 @@ const Event = ({ event }) => {
 
     return (
         <CardGroup>
-            <Card className='event border-0 shadow'>
+            <Card className='event border shadow-sm'>
                 <Card.Img variant="top" src={banner} />
                 <Card.Body>
                 <Card.Title>{name}</Card.Title>
