@@ -8,11 +8,14 @@ const events = require('./data/events.json');
 const news = require('./data/news.json');
 const newsCategories = require('./data/newsCategories.json');
 
-
+// minhazjisun
+// eQHd4z4GnIZMQUlw
 
 app.use(cors());
 app.use(express.json());
 
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+const uri = "mongodb+srv://minhazjisun:eQHd4z4GnIZMQUlw@cluster0.fmxscxb.mongodb.net/?retryWrites=true&w=majority";
 
 const client = new MongoClient(uri, {
 	serverApi: {
@@ -288,16 +291,19 @@ async function run() {
 		app.get('/events', (req, res) => {
 				res.send(events)
 		})
+	
 		
 		app.get('/events/:id', (req, res) => {
 			const id = req.params.id;
 			const event = events.find(e => e.eventId === id);
 			res.send(event)
 		})
+	
 		
 		app.get('/news-categories', (req, res) => {
 				res.send(newsCategories);
 		})
+
 		
 		app.get('/category/:id', (req, res) => {
 			const id = req.params.id;
@@ -309,10 +315,12 @@ async function run() {
 				res.send(category_news);
 			}
 		})
+
 		
 		app.get('/news', (req, res) => {
 			res.send(news);
 		})
+
 		
 		app.get('/news/:id', (req, res) => {
 			const id = req.params.id;
@@ -320,23 +328,38 @@ async function run() {
 			res.send(selectedNews);
 		})
 
+
 		app.get('/user/:id', async (req, res) => {
 			const id = req.params.id;
 
 			const query1 = { userId: id };
 			const cursor1 = userCollection.find(query1);
 			const userProfile = await cursor1.toArray();
-
-			const query2 = { authorId: id };
-			const cursor2 = posts.find(query2);
-			const userPosts = await cursor2.toArray();
-
-			const profileObj = { userProfile, userPosts };
-			res.send(profileObj);
+			// const profileObj = { userProfile };
+			res.send(userProfile);
 		})
+
+
+		app.get('/userposts/:id', async (req, res) => {
+			const id = req.params.id;
+			const query = { authorId: id };
+			const cursor = posts.find(query);
+			const userPosts = await cursor.toArray();
+			res.send(userPosts);
+		})
+
 
 		app.get("/posts", async (req, res) => {
 			const query = {};
+			const cursor = posts.find(query);
+			const Posts = await cursor.toArray();
+			res.send(Posts);
+		});
+
+
+		app.get("/posts/:id", async (req, res) => {
+			const id = req.params.id;
+			const query =  { _id: new ObjectId(id) };
 			const cursor = posts.find(query);
 			const Posts = await cursor.toArray();
 			res.send(Posts);
@@ -372,7 +395,7 @@ async function run() {
 		});
 
 		//delete post
-
+		
 
 	}
 	finally {}

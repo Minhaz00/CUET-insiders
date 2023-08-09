@@ -19,7 +19,8 @@ import './Footer.css'
 const Footer = () => {
     return (
 
-        <div className='pb-2 mt-5 border-top footer'>
+        <div className='pb-2 mt-5 pt-5 footer'>
+            <hr />
             <img className='footerImg' src={logo} alt="" />
             <div className='mx-auto d-flex justify-content-around'>
                 <div className="social-links mt-3">

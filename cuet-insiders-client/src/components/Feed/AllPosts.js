@@ -18,7 +18,7 @@ const AllPosts = ({posts, ProfileUserId}) => {
         fetch(`http://localhost:5000/user/${user.uid}`)
             .then(res => res.json())
             .then(data => {
-                setUsr(data.userProfile[0])
+                setUsr(data[0])
                 // console.log(usr);
             });
     }, [usr]);

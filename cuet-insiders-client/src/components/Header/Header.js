@@ -24,7 +24,7 @@ const Header = () => {
         fetch(`http://localhost:5000/user/${currUser.userId}`)
             .then(res => res.json())
             .then(data => {
-                setUsr(data.userProfile[0])
+                setUsr(data[0])
             });
     }, [currUser]);
 
@@ -69,7 +69,7 @@ const Header = () => {
                                 <>
                                                   
                                     <Dropdown>  
-                                        <Dropdown.Toggle variant=""  id="dropdown-basic">
+                                        <Dropdown.Toggle  className='py-0' variant=""  id="dropdown-basic">
                                             {(usr?.photoURL) ?
                                                 <Image className=' me-2' style={{ width: "40px", height: "40px"}} roundedCircle src={usr.photoURL}></Image>
                                                 :
@@ -77,21 +77,21 @@ const Header = () => {
                                             }
                                         </Dropdown.Toggle>
 
-                                        <Dropdown.Menu>
-                                            <Dropdown.Item>
-                                                <Link className=' text-decoration-none' to={`/user/${user?.uid}`}>My profile</Link>
+                                        <Dropdown.Menu  className='py-0'>
+                                            <Dropdown.Item className='px-0  border-bottom'>
+                                                <Link className='ps-3 py-1 text-decoration-none d-block w-100' to={`/user/${user?.uid}`}>My profile</Link>
                                             </Dropdown.Item>
 
-                                            <Dropdown.Item>
-                                                <Link className=' text-decoration-none' to={'/appointments'}>Appointments</Link>
+                                            <Dropdown.Item className='px-0 border-bottom'>
+                                                <Link className='ps-3  py-1 text-decoration-none d-block w-100' to={'/appointments'}>Appointments</Link>
                                             </Dropdown.Item>
 
-                                            <Dropdown.Item>
-                                                <Link className=' text-decoration-none' to={'bookmarks'}>Saved items</Link>
+                                            <Dropdown.Item className='px-0  border-bottom'>
+                                                <Link className='ps-3 py-1 text-decoration-none d-block w-100' to={'bookmarks'}>My items</Link>
                                             </Dropdown.Item>
 
-                                            <Dropdown.Item onClick={handleSignOut} className=' text-danger'>
-                                               Logout
+                                            <Dropdown.Item className='px-0 d-block w-100 border-bottom' onClick={handleSignOut}>
+                                                <p className='mb-0 py-1 ps-3 text-danger'>Logout</p>
                                             </Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>

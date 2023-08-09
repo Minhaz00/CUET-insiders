@@ -14,8 +14,7 @@ const Leftnav = () => {
         fetch(`http://localhost:5000/user/${user.uid}`)
             .then(res => res.json())
             .then(data => {
-                setUsr(data.userProfile[0])
-                // console.log(usr);
+                setUsr(data[0])
             });
     }, [usr]);
 
@@ -40,15 +39,21 @@ const Leftnav = () => {
 
             <div>
                 <div className="d-flex justify-content-between px-3">
-                    <p><small>Followers: </small></p>
+                    <Link className='text-decoration-none text-body' to={`/followers/${user?.uid}`}>
+                        <small>Followers: </small>
+                    </Link>
                     <p><small>{usr?.followers?.length}</small></p>
                 </div>
                 <div className="d-flex justify-content-between px-3">
-                    <p><small>Following: </small></p>
+                    <Link className='text-decoration-none text-body' to={`/following/${user?.uid}`}>
+                        <small>Following: </small>
+                    </Link>
                     <p><small>{usr?.following?.length}</small></p>
                 </div>
                 <div className="d-flex justify-content-between px-3">
-                    <p><small>My items: </small></p>
+                    <Link className='text-decoration-none text-body' to={`/bookmarks`}>
+                        <small>My items: </small>
+                    </Link>
                     <p><small>{usr?.bookmarks?.length}</small></p>
                 </div>
             </div>

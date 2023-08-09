@@ -37,7 +37,7 @@ const Postcard = ({ post }) => {
         fetch(`http://localhost:5000/user/${authorId}`)
             .then(res => res.json())
             .then(data => {
-                setUsr(data.userProfile[0])
+                setUsr(data[0])
                 // console.log(usr);
             });
     }, [usr]);
@@ -101,6 +101,11 @@ const Postcard = ({ post }) => {
     }
     
 
+    const handleBookmark = () => {
+        
+    }
+
+
     return (
         <div>
             <Card className='mt-3 shadow-sm'>
@@ -117,9 +122,12 @@ const Postcard = ({ post }) => {
                             </div>
 
                         </div>
-                        <div className='d-flex justify-content-center align-items-center'>
+                        <button className={toggleLikes ? 'btn px-4 text-primary' : 'btn px-4'} onClick={handleBookmark}>
+                            <FaBookmark />
+                        </button>
+                        {/* <div className='d-flex justify-content-center align-items-center' onClick={handleBookmark}>
                             <FaBookmark className='me-2'></FaBookmark>
-                        </div>
+                        </div> */}
                     </div>
                 </Card.Header>
 
@@ -156,10 +164,10 @@ const Postcard = ({ post }) => {
 
                 
                 <Card.Footer className='d-flex justify-content-around'>
-                    
+                    {/* Like and comment button  */}
                     <button className={toggleLikes ? 'btn px-4 text-primary': 'btn px-4'} onClick={handleLikes}> <BiSolidLike /> {likes?.length}</button>
                     <button className='btn px-4' onClick={handleShow}> <BiSolidComment/> {comments?.length}</button>
-                    <button className='btn px-4'> <FaShare/> 0</button>
+                    {/* <button className='btn px-4'> <FaShare/> 0</button> */}
                 </Card.Footer>
             </Card>
 

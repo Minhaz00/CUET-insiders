@@ -3,7 +3,6 @@ import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const ShowComments = ({ comment }) => {
-    // console.log(comment);
     const { commText, commenterId, commentDate } = comment;
     const [commenterName, setCommenterName] = useState('');
 
@@ -11,7 +10,7 @@ const ShowComments = ({ comment }) => {
     useEffect( () => {
         fetch(`http://localhost:5000/user/${commenterId}`)
             .then(res => res.json())
-            .then(data => setCommenterName(data.userProfile[0]?.displayName));
+            .then(data => setCommenterName(data[0].displayName));
     }, [])
 
     return (

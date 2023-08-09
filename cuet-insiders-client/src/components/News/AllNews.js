@@ -2,7 +2,6 @@ import React from 'react';
 import NewsCard from './NewsCard';
 
 const AllNews = ({ news }) => {
-    console.log(news);
     return (
         <div>
             {

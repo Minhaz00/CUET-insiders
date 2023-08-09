@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import demoDp from '../../assets/images/logo/user.png';
-import { Button, Form, Modal } from 'react-bootstrap';
-import { FaSquareArrowUpRight } from 'react-icons/fa6';
+import { Modal } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const MyAppCard = ({ appointment }) => {
     const { _id, status, mentor, topic, mentorMsg } = appointment;
@@ -18,7 +18,7 @@ const MyAppCard = ({ appointment }) => {
     useEffect( () => {
         fetch(`http://localhost:5000/user/${mentor}`)
             .then(res => res.json())
-            .then(data => setAppMentor(data.userProfile[0]));
+            .then(data => setAppMentor(data[0]));
     }, [appMentor])
 
 
@@ -33,9 +33,14 @@ const MyAppCard = ({ appointment }) => {
     return (
         <div className='shadow-sm border rounded-2 p-2 mt-2 d-flex justify-content-between align-items-center'>
             <div className='d-flex'>
-                <img  style={{ width: "50px", height: "50px"}} src={(appMentor?.photoURL)?appMentor.photoURL:demoDp} className=' rounded-circle' alt="" />
+                <Link to={`/user/${mentor}`}>
+                    <img  style={{ width: "50px", height: "50px"}} src={(appMentor?.photoURL)?appMentor.photoURL:demoDp} className=' rounded-circle' alt="" />
+                </Link>
+
                 <div className='ms-3'>
-                    <p className='fw-bold mb-0'>{appMentor.displayName}</p>
+                    <Link className='text-decoration-none text-body' to={`/user/${mentor}`}>
+                        <p className='fw-bold mb-0'>{appMentor.displayName}</p>
+                    </Link>
                     <p className='mb-0'><small>Topic: {topic}</small></p>
                 </div>
             </div>

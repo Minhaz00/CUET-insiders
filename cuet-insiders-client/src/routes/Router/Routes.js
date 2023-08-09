@@ -14,6 +14,8 @@ import Feed from "../../components/Feed/Feed";
 import Profile from "../../components/Profile/Profile";
 import Appointments from "../../components/Appointments/Appointments";
 import Bookmarks from "../../components/Bookmarks/Bookmarks";
+import Followers from "../../components/Profile/Followers";
+import Following from "../../components/Profile/Following";
 
 
 export const router = createBrowserRouter([
@@ -72,11 +74,19 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/appointments',
-                element: <Appointments></Appointments>                
+                element: <PrivateRoute><Appointments></Appointments></PrivateRoute>            
+            },
+            {
+                path: '/followers/:id',
+                element: <PrivateRoute><Followers></Followers></PrivateRoute>
+            },
+            {
+                path: '/following/:id',
+                element: <PrivateRoute><Following></Following></PrivateRoute>     
             },
             {
                 path: '/bookmarks',
-                element: <Bookmarks></Bookmarks>
+                element: <PrivateRoute><Bookmarks></Bookmarks></PrivateRoute>
             },
             {
                 path: '/login',

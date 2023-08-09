@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import './Profile.css';
 import { FaArrowRight, FaCloudArrowUp, FaTag, FaUserCheck, FaUserPlus, FaUsers } from "react-icons/fa6";
 import { GiVideoConference } from "react-icons/gi";
-import { FaArrowCircleRight, FaEdit } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 import About from './About';
 import { AuthContext } from '../../context/AuthProvider';
@@ -13,15 +13,22 @@ import demoDp from '../../assets/images/logo/user.png';
 
 const Profile = () => {
 
-    const {userProfile, userPosts} = useLoaderData();
+    const userProfile = useLoaderData();
     const { user, currUser } = useContext(AuthContext);
-    const [show1, setShow1] = useState(false);
-    const [show2, setShow2] = useState(false);
-    const handleShow1 = () => setShow1(true);             // open update modal
-    const handleClose1 = () => setShow1(false);           // close update modal
-    const handleShow2 = () => setShow2(true);             // open appointment modal
-    const handleClose2 = () => setShow2(false);           // close appointment modal
+    const [userPosts, setUserPosts] = useState([]);
 
+    // ============= Profile update Modal ===================
+    const [show1, setShow1] = useState(false);
+    const handleShow1 = () => setShow1(true);             
+    const handleClose1 = () => setShow1(false);
+
+    // =============Book Appointment Modal ===================
+    const [show2, setShow2] = useState(false);
+    const handleShow2 = () => setShow2(true);             
+    const handleClose2 = () => setShow2(false);           
+
+    
+    // ============= All info of profile owner ===============
     const {
         userId,
         photoURL,
@@ -45,7 +52,14 @@ const Profile = () => {
     } = userProfile[0];
      
 
-    // ============ sorting posts using date =================
+
+    // ============ getting user posts and sorting  =================
+    useEffect(() => { 
+        fetch(`http://localhost:5000/userposts/${userId}`)
+            .then(res => res.json())
+            .then(data => setUserPosts(data));
+    }, [userPosts]);
+
     userPosts.sort(function(a, b) {
         let keyA = new Date(a.pubDate);
         let keyB = new Date(b.pubDate);
@@ -73,11 +87,9 @@ const Profile = () => {
     // handling follow 
     const handleFollow = () => {
         setToggleFollow(toggleFollow ^ 1);
-        let profileOwner = userId;              // profile owner
-        let loggedInUser = user.uid;           // currently logged in user
+        let profileOwner = userId;              
+        let loggedInUser = user.uid;       
         const followObj = { profileOwner, loggedInUser };
-        
-
         fetch(`http://localhost:5000/follow`, {
             method: 'POST',
             headers: {
@@ -244,6 +256,7 @@ const Profile = () => {
         const text = event.target.value;
         setTopic(text);
     }
+
     const handleuserMsg = event => {
         const text = event.target.value;
         setUserMsg(text);
@@ -313,13 +326,23 @@ const Profile = () => {
                                 </p>: <></>
                         }
 
-
+                        {/* No. of followers/ followings  */}
                         <p>
                             <FaUsers/>
-                            <small className='ms-2'>{followers?.length} Followers</small>
-                            <small className='ms-2'>{following?.length} Following</small>
+                            {
+                                (user?.uid === userId) ?
+                                    <>
+                                        <Link className='text-decoration-none text-body text-muted' to={`/followers/${userId}`}><small className='ms-2'>{followers?.length} Followers</small></Link>
+                                        <Link className='text-decoration-none text-body text-muted' to={`/following/${userId}`}><small className='ms-2'>{following?.length} Following</small></Link>
+                                    </>
+                                    :
+                                    <>  
+                                        <small className='ms-2'>{followers?.length} Followers</small>
+                                        <small className='ms-2'>{following?.length} Following</small>
+                                    </>
+                            }
                         </p>
-                    </div>
+                    </div>   
                 </div>
 
                 {/* follow unfollow + update + appointment */}
@@ -334,7 +357,7 @@ const Profile = () => {
                             :
                             <>
                                 {
-                                    (!toggleFollow) ? 
+                                    (user && (!toggleFollow)) ? 
                                         <button className="btn btn-dark me-1 px-4 pt-1 " onClick={handleFollow}>
                                             <FaUserPlus /><small className='ps-2'>Follow</small>
                                         </button>

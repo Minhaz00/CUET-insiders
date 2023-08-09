@@ -14,7 +14,7 @@ const Appointments = () => {
     useEffect( () => {
         fetch(`http://localhost:5000/user/${user?.uid}`)
             .then(res => res.json())
-            .then(data => setUsr(data.userProfile[0]));
+            .then(data => setUsr(data[0]));
     }, [usr])
     
     useEffect(() => {
@@ -29,9 +29,6 @@ const Appointments = () => {
             .then(data => setRequests(data));
     }, [requests])
 
-
-
-    // console.log(myAppointments, requests);
 
 
     return (

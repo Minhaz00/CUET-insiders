@@ -2,32 +2,40 @@ import React, { useEffect, useState } from 'react';
 import demoDp from '../../assets/images/logo/user.png';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { FaSquareArrowUpRight } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
+
 
 const RequestCard = ({ request }) => {
 
     const { _id, status, topic, reqSender, userMsg, mentorMsg } = request;
     const [sender, setSender] = useState([]);
 
+    // ================== Details Modal ====================
     const [show1, setShow1] = useState(false);
     const handleShow1 = () => setShow1(true);        
     const handleClose1 = () => setShow1(false);
 
+    // ================== Approve Modal ====================
     const [show2, setShow2] = useState(false);
     const handleShow2 = () => setShow2(true);        
     const handleClose2 = () => setShow2(false);
 
+    // ================== Reject Modal ====================
     const [show3, setShow3] = useState(false);
     const handleShow3 = () => setShow3(true);        
     const handleClose3 = () => setShow3(false);
 
+    // ========= Details Modal (after approved) ============
     const [show4, setShow4] = useState(false);
     const handleShow4 = () => setShow4(true);        
     const handleClose4 = () => setShow4(false);
+
     
+    // ============ fetching requests sender ============
     useEffect( () => {
         fetch(`http://localhost:5000/user/${reqSender}`)
             .then(res => res.json())
-            .then(data => setSender(data.userProfile[0]));
+            .then(data => setSender(data[0]));
     }, [sender])
 
 
@@ -88,9 +96,13 @@ const RequestCard = ({ request }) => {
     return (
         <div className='shadow-sm border rounded-2 p-2 mt-2 d-flex justify-content-between align-items-center'>
             <div className='d-flex'>
-                <img  style={{ width: "50px", height: "50px"}} src={(sender?.photoURL)?sender.photoURL:demoDp} className=' rounded-circle' alt="" />
+                <Link to={`/user/${reqSender}`}>
+                    <img style={{ width: "50px", height: "50px" }} src={(sender?.photoURL) ? sender.photoURL : demoDp} className=' rounded-circle' alt="" />
+                </Link>
                 <div className='ms-3'>
-                    <p className='fw-bold mb-0'>{sender.displayName}</p>
+                    <Link className='text-decoration-none text-body' to={`/user/${reqSender}`}>
+                        <p className='fw-bold mb-0'>{sender.displayName}</p>
+                    </Link>
                     <p className='mb-0'><small>Topic: {topic}</small></p>
                 </div>
             </div>
