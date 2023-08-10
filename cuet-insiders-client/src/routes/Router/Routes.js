@@ -17,6 +17,7 @@ import Bookmarks from "../../components/Bookmarks/Bookmarks";
 import Followers from "../../components/Profile/Followers";
 import Following from "../../components/Profile/Following";
 import Search from "../../components/Search/Search";
+import Notfound from "../../components/Notfound/Notfound";
 
 
 export const router = createBrowserRouter([
@@ -103,5 +104,9 @@ export const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: '*',
+        element: <Notfound></Notfound>
+    }
     
 ])

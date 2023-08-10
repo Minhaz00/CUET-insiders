@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import { BiSolidLike, BiSolidComment } from "react-icons/bi";
 import ShowComments from './ShowComments';
+import { toast } from 'react-hot-toast';
 
 const Postcard = ({ post }) => {
 
@@ -114,8 +115,12 @@ const Postcard = ({ post }) => {
             },
             body: JSON.stringify(bookmarkObj)
         })
-            .then(res => res.json())
-            .then(data => {})
+             .then(res => res.json())
+             .then(data => {
+                toast('Post bookmarked!', {
+                    icon: '📌',
+                  });
+            })
             .catch(err => console.error(err));
 
     }

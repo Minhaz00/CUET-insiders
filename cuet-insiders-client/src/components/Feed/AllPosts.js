@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import './Allpost.css';
 import Postcard from './Postcard';
 import demoDp from '../../assets/images/logo/user.png'
+import { toast } from 'react-hot-toast';
 
 const AllPosts = ({posts, ProfileUserId}) => {
 
@@ -69,7 +70,7 @@ const AllPosts = ({posts, ProfileUserId}) => {
             body: JSON.stringify(postObj)
             })
                 .then(res => res.json())
-                .then(data => { })
+                .then(data => {toast.success("Post has been uploaded");})
                 .catch(err => console.error(err));
         }
         setPostText('');

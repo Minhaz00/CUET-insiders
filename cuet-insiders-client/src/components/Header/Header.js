@@ -1,32 +1,29 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from '../../assets/images/logo/logo.png';
-import { FaSearch, FaSignOutAlt } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import './Header.css';
 import { AuthContext } from '../../context/AuthProvider';
-import { Dropdown, Image, NavDropdown } from 'react-bootstrap';
-import { FaUserCircle } from "react-icons/fa";
+import { Dropdown, Image } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import demoDp from '../../assets/images/logo/user.png';
-import { FaBookmark, FaRegAddressCard, FaRegCalendarCheck } from 'react-icons/fa6';
 
 const Header = () => {
 
-    const { user, currUser, logout } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const [usr, setUsr] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/user/${currUser.userId}`)
+        fetch(`http://localhost:5000/user/${user?.uid}`)
             .then(res => res.json())
             .then(data => {
                 setUsr(data[0])
             });
-    }, [currUser]);
+    }, [user]);
 
     const handleSignOut = () => {
         logout()

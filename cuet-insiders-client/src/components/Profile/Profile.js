@@ -10,6 +10,7 @@ import { AuthContext } from '../../context/AuthProvider';
 import AllPosts from '../Feed/AllPosts';
 import demoCover from '../../assets/images/logo/demo-cover.jpg';
 import demoDp from '../../assets/images/logo/user.png';
+import { toast } from 'react-hot-toast';
 
 const Profile = () => {
 
@@ -239,7 +240,9 @@ const Profile = () => {
             body: JSON.stringify(updatedUser)
         })
             .then(res => res.json())
-            .then(data => {})
+            .then(data => {
+                toast.success("Updated successfully!");
+            })
             .catch(err => console.error(err));
             
             

@@ -49,7 +49,7 @@ const Home = () => {
                         <h2 className=' mb-0'>Find mentors of your choice</h2>
                         {doubleUnderline}
                         <p className='mt-2 text-muted'>Whether you're seeking career advice, personal development, or specialized expertise, we've got you covered. Take the first step towards realizing your full potential and let us help you find the mentor of your dreams. Start your transformative mentorship journey with us today!</p>
-                        <Link to="/feed">
+                        <Link to="/search">
                             <button className='btn btn-outline-dark'>Search mentor  <FaArrowRight></FaArrowRight></button>        
                         </Link>
                     </div>
@@ -84,7 +84,7 @@ const Home = () => {
                         {doubleUnderline}
                         <p className='mt-2 text-muted'>Experience mentorship designed exclusively for you. Your mentor will dedicate focused time and attention to understand your aspirations, challenges, and goals, creating a tailored roadmap for your personal and professional development.</p>
 
-                        <Link to="/feed">
+                        <Link to="/search">
                             <button className='btn btn-outline-dark'>Search mentor <FaArrowRight></FaArrowRight> </button>        
                         </Link>
 
@@ -99,7 +99,7 @@ const Home = () => {
                         {doubleUnderline}
                         <p className='mt-2 text-muted'>Join us for a captivating and enriching experience in our exclusive Events, thoughtfully organized by seasoned professionals. Dive into a world of cutting-edge technology, breakthrough research, and dynamic discussions that redefine the boundaries of engineering excellence.Engage with top-notch professionals and experts in various fields.</p>
 
-                        <Link to="/feed">
+                        <Link to="/events">
                             <button className='btn btn-outline-dark'>Explore events <FaArrowRight></FaArrowRight> </button>        
                         </Link>
 
@@ -120,8 +120,8 @@ const Home = () => {
                         {doubleUnderline}
                         <p className='mt-2 text-muted'>"CUET-INSIDERS" is your one-stop news portal dedicated to keeping you informed and engaged with the latest updates and happenings on our vibrant university campus. Designed with students, faculty, and staff in mind, this platform offers a dynamic and immersive experience, ensuring you never miss a beat when it comes to campus life.</p>
 
-                        <Link to="/feed">
-                            <button className='btn btn-outline-dark'>Search mentor <FaArrowRight></FaArrowRight> </button>        
+                        <Link to="/news">
+                            <button className='btn btn-outline-dark'>Browse news <FaArrowRight></FaArrowRight> </button>        
                         </Link>
 
                     </div>
@@ -132,9 +132,6 @@ const Home = () => {
                 <div className="pb-5 pt-5 d-flex justify-content-center align-items-center">
                     <div className='left'>
                         <FAQ></FAQ>
-                        <Link to="/feed">
-                            <button className='mt-2 btn btn-outline-dark'>Ask question <FaArrowRight></FaArrowRight> </button>        
-                        </Link>
                     </div>    
                     <div className='right'>
                         <img src={img3} alt=""   />

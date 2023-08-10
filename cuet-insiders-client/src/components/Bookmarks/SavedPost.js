@@ -22,8 +22,7 @@ const SavedPost = ({ post }) => {
         postImage,   
         authorId,
         author,
-        likes,
-        comments } = savedPost;
+    } = savedPost;
     
     const [usr, setUsr] = useState([]);
     useEffect(() => {
@@ -32,7 +31,7 @@ const SavedPost = ({ post }) => {
             .then(data => {
                 setUsr(data[0]);
             })
-    }, [usr]);
+    }, [authorId]);
 
     
     // ================ deleting saved post ==================
