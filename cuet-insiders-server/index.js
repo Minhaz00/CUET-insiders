@@ -327,7 +327,15 @@ async function run() {
 
 
 
-		// ============================= READ =================================== 
+		// ============================= READ ===================================
+
+		app.get('/users', async (req, res) => {
+			const query = {};
+			const cursor = userCollection.find(query);
+			const users = await cursor.toArray();
+			res.send(users);
+		})
+		
 
 		app.get('/events', (req, res) => {
 				res.send(events)

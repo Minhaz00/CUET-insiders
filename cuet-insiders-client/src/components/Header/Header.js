@@ -58,16 +58,16 @@ const Header = () => {
 
                         </Nav>
                         
-                        {/* <Form className="d-flex">
-                            <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search"                            />
-                            <Button variant="outline-dark"><FaSearch/></Button>
-                        </Form> */}
-
                         <Navbar.Text>
                             
                             {(user && usr)?
-                                <>
-                                                  
+                                <div className='d-flex'>
+                                    <Link to={'/search'}>
+                                        <Button variant="outline-dark">
+                                            <FaSearch />
+                                            Search
+                                        </Button>
+                                    </Link>   
                                     <Dropdown>  
                                         <Dropdown.Toggle  className='py-0' variant=""  id="dropdown-basic">
                                             {(usr?.photoURL) ?
@@ -95,7 +95,7 @@ const Header = () => {
                                             </Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>
-                                </>
+                                </div>
                                 :
                                 <>
                                     <Link to={`/login`}>

@@ -16,6 +16,7 @@ import Appointments from "../../components/Appointments/Appointments";
 import Bookmarks from "../../components/Bookmarks/Bookmarks";
 import Followers from "../../components/Profile/Followers";
 import Following from "../../components/Profile/Following";
+import Search from "../../components/Search/Search";
 
 
 export const router = createBrowserRouter([
@@ -68,7 +69,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/user/:id',
-                element: <Profile></Profile>,
+                element: <PrivateRoute><Profile></Profile></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/user/${params.id}`)
                 
             },
@@ -87,6 +88,10 @@ export const router = createBrowserRouter([
             {
                 path: '/bookmarks',
                 element: <PrivateRoute><Bookmarks></Bookmarks></PrivateRoute>
+            },
+            {
+                path: '/search',
+                element: <PrivateRoute><Search></Search> </PrivateRoute>
             },
             {
                 path: '/login',
