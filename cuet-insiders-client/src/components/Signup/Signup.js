@@ -42,11 +42,13 @@ const SignUp = () => {
                 form.reset();
                 handleProfileUpdate(name);
                 toast.success("Account created successfully!");
+                navigate('/feed');
+                window.location.reload();
             })
             .catch(error => {
                 setError(error.message);
             });
-        navigate('/');
+        
         
     }
 

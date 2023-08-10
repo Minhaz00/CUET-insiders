@@ -22,8 +22,6 @@ const Postcard = ({ post }) => {
        
     const [usr, setUsr] = useState([]);  
     const [books, setBooks] = useState([]);
-    const [toggleBookmark, setToggleBookmark] = useState(false);
-
     useEffect(() => {
         fetch(`http://localhost:5000/user/${authorId}`)
             .then(res => res.json())
@@ -105,7 +103,6 @@ const Postcard = ({ post }) => {
     // =================== handling bookmark =============================
 
     const handleBookmark = () => {
-        setToggleBookmark(toggleBookmark ^ 1);
         const userId = user?.uid;
         const postId = _id;
         const bookmarkObj = { userId, postId };
@@ -146,7 +143,7 @@ const Postcard = ({ post }) => {
                             </div>
 
                         </div>
-                        <button className={toggleBookmark ? 'btn text-primary' : 'btn'} onClick={handleBookmark}>
+                        <button className='btn' onClick={handleBookmark}>
                             <FaBookmark />
                         </button>
                     </div>

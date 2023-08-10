@@ -425,6 +425,52 @@ async function run() {
 		})
 
 
+		app.get('/people/:id', async (req, res) => {
+			//------------------ curr user -------------
+			userId = req.params.id;
+			const query1 = { userId: userId };
+			const cursor1 = userCollection.find(query1);
+			const usr = await cursor1.toArray();
+			const alreadyFollowingArr = usr[0].following;
+			// console.log(alreadyFollowingArr);
+
+			//------ user from same dept -------------
+			const dept = "CSE"
+			const query2 = { deptName: dept };
+			const cursor2 = userCollection.find(query2);
+			const deptUsr = await cursor2.toArray();
+			// console.log(deptUsr.length);
+
+			//------ sorting w.r.t follower -------------
+			deptUsr.sort(function(a, b) {
+				let keyA = a.followers.length;
+				let keyB = b.followers.length;
+				if (keyA > keyB) return -1;
+				if (keyA < keyB) return 1;
+				return 0;
+			});
+
+			const suggestedUser = [];
+			for (let i = 0; i < deptUsr?.length; i++){
+				const id = deptUsr[i]?.userId;
+				if (id === userId) continue;
+				const temp = alreadyFollowingArr.find(p => p === id);
+				
+				if (!temp) {
+					// console.log(id);
+					suggestedUser.push(id);
+				}
+
+				if (suggestedUser.length >= 10) {
+					break;
+				}
+			
+			}
+			// console.log(suggestedUser);
+			res.send(suggestedUser);
+		})
+
+
 
 		// =================================DELETE ==================================
 		// delete appointment

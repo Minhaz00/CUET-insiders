@@ -83,13 +83,13 @@ const AllPosts = ({posts, ProfileUserId}) => {
                 user.uid === ProfileUserId ?
                      // current user can upload post from own profile
                     <div>
-                        <div  className='rounded-3 py-3 px-1 border-0 shadow-sm'>
+                        <div  className='rounded-3 py-3 px-1 border shadow-sm'>
                             <Link to={`/user/${user.uid}`}>
                                 <Image className='ms-2 me-2 d-inline' style={{ width: "50px", height: "50px"}} roundedCircle src={(usr?.photoURL)?usr.photoURL:demoDp}></Image>
                             </Link>
 
                             <Button className='btn p-0 post-input rounded-3 bg-body-tertiary border-0' onClick={handleShow}>
-                                <input className='w-100 shadow-sm border rounded-3 bg-body-tertiary postInput' type="text" name="" id="" placeholder="Start a post ..."/>
+                                <input className='w-100  border rounded-3 bg-body-tertiary postInput' type="text" name="" id="" placeholder="Start a post ..."/>
                             </Button>
                         </div>
 

@@ -11,7 +11,7 @@ const Leftnav = () => {
     const { user } = useContext(AuthContext);    
     const [usr, setUsr] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/user/${user.uid}`)
+        fetch(`http://localhost:5000/user/${user?.uid}`)
             .then(res => res.json())
             .then(data => {
                 setUsr(data[0])

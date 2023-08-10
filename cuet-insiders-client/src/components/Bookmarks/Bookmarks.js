@@ -32,7 +32,7 @@ const Bookmarks = () => {
                             </p>
                         </>
                         :
-                        <div className=' d-flex'>
+                        <div className=' d-flex flex-wrap justify-content-between align-items-center'>
                             {
                                 savedPosts.map(post => <SavedPost
                                     key={post}

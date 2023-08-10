@@ -4,9 +4,7 @@
 
 }
 
-.footer {
-    
-}
+
 
 .carImg{
     height: 150px;
@@ -23,3 +21,10 @@
     color: rgb(39, 35, 35);
     /* font-size: small; */
 }
+
+
+@media only screen and (max-width: 600px) {
+    .footer {
+        visibility: hidden;
+    }
+  }

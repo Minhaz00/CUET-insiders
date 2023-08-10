@@ -17,7 +17,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const location = useLocation();
-    const from = location.state?.from?.pathname || '/';
+    const from = location.state?.from?.pathname || '/feed';
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -31,6 +31,7 @@ const Login = () => {
                 form.reset();
                 setError("");
                 navigate(from, { replace: true });
+                window.location.reload();
             })
             .catch(error => {
                 console.error(error);

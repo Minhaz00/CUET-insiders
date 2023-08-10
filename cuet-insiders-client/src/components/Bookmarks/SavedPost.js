@@ -2,11 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Card, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import { FaTrash } from "react-icons/fa6";
+
 
 const SavedPost = ({ post }) => {
 
     const { user } = useContext(AuthContext);
     const [savedPost, setSavedPost] = useState([]);
+    
     useEffect(() => {
         fetch(`http://localhost:5000/posts/${post}`)
             .then(res => res.json())
@@ -22,24 +25,42 @@ const SavedPost = ({ post }) => {
         likes,
         comments } = savedPost;
     
-
-
-        const [usr, setUsr] = useState([]);
-        useEffect(() => {
-            fetch(`http://localhost:5000/user/${authorId}`)
-                .then(res => res.json())
-                .then(data => {
-                    setUsr(data[0]);
-                })
-        }, [usr]);
+    const [usr, setUsr] = useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:5000/user/${authorId}`)
+            .then(res => res.json())
+            .then(data => {
+                setUsr(data[0]);
+            })
+    }, [usr]);
 
     
+    // ================ deleting saved post ==================
+    const handleBookmark = () => {
+        const userId = user?.uid;
+        const postId = _id;
+        const bookmarkObj = { userId, postId };
+
+            fetch(`http://localhost:5000/bookmark`, {
+            method: 'POST',
+            headers: {
+                "content-type": 'application/json'
+            },
+            body: JSON.stringify(bookmarkObj)
+        })
+            .then(res => res.json())
+            .then(data => {})
+            .catch(err => console.error(err));
+
+    }
+    
+    
     return (
-        <div className='w-50 px-3 mx-auto'>
+        <div className='w-50 px-3 mx-auto w-50 '>
            <Card className='mt-3 shadow-sm'>
                 <Card.Header className='py-0'>
                     <div className="d-flex justify-content-between">
-                    <div className="author-details d-flex align-items-center">
+                        <div className="author-details d-flex align-items-center">
                             
                             <Link to={`/user/${authorId}`}>
                                 <Image className='m-0' style={{ width: "45px", height: "45px" }} roundedCircle src={usr?.photoURL} alt="" />
@@ -56,6 +77,9 @@ const SavedPost = ({ post }) => {
                             </div>
 
                         </div>
+
+                        <button className='btn' onClick={handleBookmark}><FaTrash/></button>
+
                     </div>
                 </Card.Header>
 

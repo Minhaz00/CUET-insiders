@@ -77,21 +77,21 @@ const Header = () => {
                                             }
                                         </Dropdown.Toggle>
 
-                                        <Dropdown.Menu  className='py-0'>
+                                        <Dropdown.Menu  className='py-0 w-75'>
                                             <Dropdown.Item className='px-0  border-bottom'>
-                                                <Link className='ps-3 py-1 text-decoration-none d-block w-100' to={`/user/${user?.uid}`}>My profile</Link>
+                                                <Link className='ps-2 py-0 text-decoration-none d-block w-100' to={`/user/${user?.uid}`}><small>My profile</small></Link>
                                             </Dropdown.Item>
 
                                             <Dropdown.Item className='px-0 border-bottom'>
-                                                <Link className='ps-3  py-1 text-decoration-none d-block w-100' to={'/appointments'}>Appointments</Link>
+                                                <Link className='ps-2  py-0 text-decoration-none d-block w-100' to={'/appointments'}><small>Appointments</small></Link>
                                             </Dropdown.Item>
 
                                             <Dropdown.Item className='px-0  border-bottom'>
-                                                <Link className='ps-3 py-1 text-decoration-none d-block w-100' to={'bookmarks'}>My items</Link>
+                                                <Link className='ps-2 py-0 text-decoration-none d-block w-100' to={'bookmarks'}><small>My items</small></Link>
                                             </Dropdown.Item>
 
                                             <Dropdown.Item className='px-0 d-block w-100 border-bottom' onClick={handleSignOut}>
-                                                <p className='mb-0 py-1 ps-3 text-danger'>Logout</p>
+                                                <p className='mb-0 py-0 ps-2 text-danger'><small>Logout</small></p>
                                             </Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>
