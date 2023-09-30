@@ -6,7 +6,21 @@ import { AuthContext } from '../../context/AuthProvider';
 import { BiSolidLike, BiSolidComment } from "react-icons/bi";
 import ShowComments from './ShowComments';
 import { toast } from 'react-hot-toast';
-
+import {
+    FacebookShareButton,
+    WhatsappShareButton,
+    TwitterShareButton,
+    TelegramShareButton,
+    LinkedinShareButton,
+    FacebookMessengerShareButton,
+    WhatsappIcon,
+    FacebookIcon,
+    FacebookMessengerIcon,
+    LinkedinIcon,
+    TelegramIcon,
+    TwitterIcon,
+} from 'react-share';
+  
 const Postcard = ({ post }) => {
 
     const { user } = useContext(AuthContext);
@@ -114,6 +128,7 @@ const Postcard = ({ post }) => {
                 "content-type": 'application/json'
             },
             body: JSON.stringify(bookmarkObj)
+            
         })
              .then(res => res.json())
              .then(data => {
@@ -126,9 +141,22 @@ const Postcard = ({ post }) => {
     }
 
 
+
+    // =================== share-modal open / close ===================
+    const [show1, setShow1] = useState(false);
+    const handleShow1 = () => setShow1(true);
+    const handleClose1 = () => setShow1(false);
+
+
+    // =================== handling share =================================
+
+    const shareUrl = `http://localhost:3000/post/${_id}`;
+
+
     return (
         <div>
             <Card className='mt-3 shadow-sm'>
+                <Link className='text-decoration-none' to={`/post/${_id}`}>
                 <Card.Header className='py-0'>
                     <div className="d-flex justify-content-between">
                         <div className="author-details d-flex align-items-center">
@@ -153,6 +181,7 @@ const Postcard = ({ post }) => {
                         </button>
                     </div>
                 </Card.Header>
+               </Link>
 
                 
                 <Card.Body>
@@ -186,11 +215,12 @@ const Postcard = ({ post }) => {
                 </Card.Body>
 
                 
+                {/* Like, Commment, Share button  */}
                 <Card.Footer className='d-flex justify-content-around'>
                     {/* Like and comment button  */}
                     <button className={toggleLikes ? 'btn px-4 text-primary': 'btn px-4'} onClick={handleLikes}> <BiSolidLike /> {likes?.length}</button>
                     <button className='btn px-4' onClick={handleShow}> <BiSolidComment/> {comments?.length}</button>
-                    {/* <button className='btn px-4'> <FaShare/> 0</button> */}
+                    <button className='btn px-4' onClick={handleShow1}> <FaShare/></button>
                 </Card.Footer>
             </Card>
 
@@ -225,6 +255,47 @@ const Postcard = ({ post }) => {
                         ></ShowComments>)    
                     }
                 </div>
+
+            </Modal>
+
+
+            {/* share post Modal */}
+            <Modal show={show1} onHide={handleClose1} scrollable>
+                    
+                <Modal.Header closeButton className='pt-2 pb-1'>
+                    <Modal.Title><small>Share post</small> </Modal.Title>
+                </Modal.Header>
+                
+
+                <Modal.Body>
+                    <div className="social-share">
+                        <FacebookShareButton url={shareUrl}>
+                            <FacebookIcon size={40} round={true} style={{marginRight : 15}}/>
+                        </FacebookShareButton>
+
+                        <FacebookMessengerShareButton url={shareUrl}>
+                            <FacebookMessengerIcon size={40} round={true}  style={{marginRight : 15}}/>
+                        </FacebookMessengerShareButton>
+
+                        <WhatsappShareButton url={shareUrl}>
+                            <WhatsappIcon size={40} round={true} style={{marginRight : 15}} />
+                        </WhatsappShareButton>
+                        
+
+                        <TelegramShareButton url={shareUrl}>
+                            <TelegramIcon size={40} round={true}  style={{marginRight : 15}}/>
+                        </TelegramShareButton>
+
+
+                        <TwitterShareButton url={shareUrl}>
+                            <TwitterIcon size={40} round={true}  style={{marginRight : 15}}/>
+                        </TwitterShareButton>
+
+                        <LinkedinShareButton url={shareUrl}>
+                            <LinkedinIcon size={40} round={true}  style={{marginRight : 15}}/>
+                        </LinkedinShareButton>
+                    </div>
+                </Modal.Body>
 
             </Modal>
 

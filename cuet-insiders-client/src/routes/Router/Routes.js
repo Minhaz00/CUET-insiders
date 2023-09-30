@@ -18,6 +18,7 @@ import Followers from "../../components/Profile/Followers";
 import Following from "../../components/Profile/Following";
 import Search from "../../components/Search/Search";
 import Notfound from "../../components/Notfound/Notfound";
+import PostDetails from "../../components/Feed/PostDetails";
 
 
 export const router = createBrowserRouter([
@@ -85,6 +86,11 @@ export const router = createBrowserRouter([
             {
                 path: '/following/:id',
                 element: <PrivateRoute><Following></Following></PrivateRoute>     
+            },
+            {
+                path: '/post/:id',
+                element: <PostDetails></PostDetails>,
+                loader: ({params}) => fetch(`http://localhost:5000/post/${params.id}`)
             },
             {
                 path: '/bookmarks',

@@ -37,19 +37,17 @@ const FollowingCard = ({following}) => {
     }
 
     return (
-        <div className='w-50 shadow-sm border rounded-3 px-3 py-3 mx-2 d-flex justify-content-between align-items-center'>
-            <div>
-                <div className='d-flex'>
-                    <Link to={`/user/${following}`}>
-                        <img  style={{ width: "50px", height: "50px"}} src={(usr?.photoURL)?usr.photoURL:demoDp} className=' rounded-circle' alt="" />
-                    </Link>
+        <div className='shadow-sm border rounded-3 px-1 py-2 m-2 d-flex justify-content-between align-items-center'>
+            <div  className='d-flex'>
+                <Link to={`/user/${following}`}>
+                    <img  style={{ width: "50px", height: "50px"}} src={(usr?.photoURL)?usr.photoURL:demoDp} className=' rounded-circle' alt="" />
+                </Link>
 
-                    <div className='ms-3'>
-                        <Link className='text-decoration-none text-body' to={`/user/${following}`}>
-                            <p className='fw-bold mb-0'>{usr.displayName}</p>
-                        </Link>
-                        <p className='mb-0 text-muted'><small>{usr?.bio}</small></p>
-                    </div>
+                <div className='ms-3'>
+                    <Link className='text-decoration-none text-body' to={`/user/${following}`}>
+                        <p className='fw-bold mb-0'>{usr.displayName}</p>
+                    </Link>
+                    <p className='mb-0 text-muted'><small>{usr?.bio}</small></p>
                 </div>
             </div>
 

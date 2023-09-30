@@ -12,7 +12,7 @@ const FollowerCard = ({follower}) => {
     }, [usr])
 
     return (
-        <div className='w-50 shadow-sm border rounded-3 px-3 py-3 mx-2'>
+        <div className='shadow-sm border rounded-3 px-1 py-2 m-2'>
             <div className='d-flex'>
                 <Link to={`/user/${follower}`}>
                     <img  style={{ width: "50px", height: "50px"}} src={(usr?.photoURL)?usr.photoURL:demoDp} className=' rounded-circle' alt="" />

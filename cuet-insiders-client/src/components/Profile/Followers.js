@@ -3,6 +3,7 @@ import { AuthContext } from '../../context/AuthProvider';
 import FollowerCard from './FollowerCard';
 import { FaArrowLeft } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import './follow.css';
 
 const Followers = () => {
     const { user } = useContext(AuthContext);
@@ -25,7 +26,7 @@ const Followers = () => {
             </h5>
             <hr className='mt-0' />
             
-            <div className='d-flex'>
+            <div className='FollowCards'>
             {
                 followers?.map(follower => <FollowerCard
                     key={follower}

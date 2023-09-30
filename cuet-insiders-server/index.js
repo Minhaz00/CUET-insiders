@@ -479,6 +479,16 @@ async function run() {
 		})
 
 
+		app.get('/post/:id', async (req, res) => {
+			
+			const id = req.params.id;
+			const query1 = { _id: new ObjectId(id) };
+			const cursor1 = posts.find(query1);
+			const resultPost = await cursor1.toArray();
+			res.send(resultPost);
+		})
+
+
 
 		// =================================DELETE ==================================
 		// delete appointment

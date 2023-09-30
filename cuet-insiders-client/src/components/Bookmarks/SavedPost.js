@@ -57,30 +57,32 @@ const SavedPost = ({ post }) => {
     return (
         <div className='w-50 px-3 mx-auto w-50 '>
            <Card className='mt-3 shadow-sm'>
-                <Card.Header className='py-0'>
-                    <div className="d-flex justify-content-between">
-                        <div className="author-details d-flex align-items-center">
-                            
-                            <Link to={`/user/${authorId}`}>
-                                <Image className='m-0' style={{ width: "45px", height: "45px" }} roundedCircle src={usr?.photoURL} alt="" />
-                            </Link>
-
-                            <div className='my-2 ms-2'>
-                                <Link className='text-decoration-none text-body' to={`/user/${authorId}`}>
-                                    <p className='mb-0 fw-semibold'>{usr?.displayName}</p>
-                                </Link>
+                <Link className='text-decoration-none' to={`/post/${_id}`}>
+                    <Card.Header className='py-0'>
+                        <div className="d-flex justify-content-between">
+                            <div className="author-details d-flex align-items-center">
                                 
-                                <p className='mb-0 text-muted'>
-                                    <small>{pubDate?.slice(0, 10)}{"  "}{pubDate?.slice(12, 16)}</small>
-                                </p>
+                                <Link to={`/user/${authorId}`}>
+                                    <Image className='m-0' style={{ width: "45px", height: "45px" }} roundedCircle src={usr?.photoURL} alt="" />
+                                </Link>
+
+                                <div className='my-2 ms-2'>
+                                    <Link className='text-decoration-none text-body' to={`/user/${authorId}`}>
+                                        <p className='mb-0 fw-semibold'>{usr?.displayName}</p>
+                                    </Link>
+                                    
+                                    <p className='mb-0 text-muted'>
+                                        <small>{pubDate?.slice(0, 10)}{"  "}{pubDate?.slice(12, 16)}</small>
+                                    </p>
+                                </div>
+
                             </div>
 
+                            <button className='btn' onClick={handleBookmark}><FaTrash/></button>
+
                         </div>
-
-                        <button className='btn' onClick={handleBookmark}><FaTrash/></button>
-
-                    </div>
-                </Card.Header>
+                    </Card.Header>
+               </Link>
 
                 
                 <Card.Body>
