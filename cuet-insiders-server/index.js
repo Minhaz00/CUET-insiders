@@ -8,13 +8,14 @@ const events = require('./data/events.json');
 const news = require('./data/news.json');
 const newsCategories = require('./data/newsCategories.json');
 
-
+// minhazjisun
+// eQHd4z4GnIZMQUlw
 
 app.use(cors());
 app.use(express.json());
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
-
+const uri = "mongodb+srv://minhazjisun:eQHd4z4GnIZMQUlw@cluster0.fmxscxb.mongodb.net/?retryWrites=true&w=majority";
 
 const client = new MongoClient(uri, {
 	serverApi: {
